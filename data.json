@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Blonde",
+    "artist": "Luna Vex",
+    "price": 299,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Blonde' by Luna Vex released in 2021.",
+    "imageUrl": "/images/blonde.jpg",
+    "createdAt": "2021-01-01"
+  },
+  {
+    "title": "Midnight Echoes",
+    "artist": "The Velvet Static",
+    "price": 279,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Midnight Echoes' by The Velvet Static released in 2019.",
+    "imageUrl": "/images/speed.jpg",
+    "createdAt": "2019-01-01"
+  },
+  {
+    "title": "Moonlit Mirage",
+    "artist": "Nova Circuit",
+    "price": 319,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Moonlit Mirage' by Nova Circuit released in 2022.",
+    "imageUrl": "/images/moon.jpg",
+    "createdAt": "2022-01-01"
+  },
+  {
+    "title": "Sun Set",
+    "artist": "Arctic Bloom",
+    "price": 289,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Sun Set' by Arctic Bloom released in 2020.",
+    "imageUrl": "/images/sunset.jpg",
+    "createdAt": "2020-01-01"
+  },
+  {
+    "title": "Electric Horizon",
+    "artist": "Pixel Saints",
+    "price": 309,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Electric Horizon' by Pixel Saints released in 2023.",
+    "imageUrl": "/images/electric_horizon.jpg",
+    "createdAt": "2023-01-01"
+  },
+  {
+    "title": "On the road to nowhere",
+    "artist": "MonoWave",
+    "price": 269,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'On the road to nowhere' by MonoWave released in 2018.",
+    "imageUrl": "/images/on_the_road.jpg",
+    "createdAt": "2018-01-01"
+  },
+  {
+    "title": "Crimson Frequency",
+    "artist": "Aurora Drift",
+    "price": 299,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Crimson Frequency' by Aurora Drift released in 2021.",
+    "imageUrl": "/images/frequency.jpg",
+    "createdAt": "2021-01-01"
+  },
+  {
+    "title": "Lost Signals",
+    "artist": "Echo Harbor",
+    "price": 279,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Lost Signals' by Echo Harbor released in 2020.",
+    "imageUrl": "/images/forest.jpg",
+    "createdAt": "2020-01-01"
+  },
+  {
+    "title": "The blue ocean",
+    "artist": "Neon Cartographer",
+    "price": 339,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'The blue ocean' by Neon Cartographer released in 2024.",
+    "imageUrl": "/images/ocean.jpg",
+    "createdAt": "2024-01-01"
+  },
+  {
+    "title": "Dragon Night",
+    "artist": "Chrome Garden",
+    "price": 299,
+    "genre": "Unknown",
+    "stock": 10,
+    "condition": "new",
+    "description": "Album 'Dragon Night' by Chrome Garden released in 2022.",
+    "imageUrl": "/images/star_night.jpg",
+    "createdAt": "2022-01-01"
+  }
+]
