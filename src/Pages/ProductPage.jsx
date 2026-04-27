@@ -1,14 +1,21 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import products from "../../data.json";
+import { getProductById } from "../services/productService";
 
 export default function ProductPage() {
-  // Get product id from URL
   const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Find product by id
-  const product = products.find((p) => p.id === Number(id));
+  useEffect(() => {
+    getProductById(id).then(data => {
+      setProduct(data);
+      setLoading(false);
+    });
+  }, [id]);
 
-  // If product not found
+  if (loading) return <h2>Laddar...</h2>;
+
   if (!product) {
     return <h2>Product not found</h2>;
   }
