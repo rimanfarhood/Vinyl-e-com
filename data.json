@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "title": "Blonde",
     "artist": "Luna Vex",
     "price": 299,
@@ -13,6 +14,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 2,
     "title": "Midnight Echoes",
     "artist": "The Velvet Static",
     "price": 279,
@@ -26,6 +28,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 3,
     "title": "Moonlit Mirage",
     "artist": "Nova Circuit",
     "price": 319,
@@ -39,6 +42,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 4,
     "title": "Sun Set",
     "artist": "Arctic Bloom",
     "price": 289,
@@ -52,6 +56,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 5,
     "title": "Electric Horizon",
     "artist": "Pixel Saints",
     "price": 309,
@@ -65,6 +70,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 6,
     "title": "On the road to nowhere",
     "artist": "MonoWave",
     "price": 269,
@@ -78,6 +84,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 7,
     "title": "Crimson Frequency",
     "artist": "Aurora Drift",
     "price": 299,
@@ -91,6 +98,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 8,
     "title": "Lost Signals",
     "artist": "Echo Harbor",
     "price": 279,
@@ -104,6 +112,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 9,
     "title": "The blue ocean",
     "artist": "Neon Cartographer",
     "price": 339,
@@ -117,6 +126,7 @@
     "modifiedAt": "2026-05-01"
   },
   {
+    "id": 10,
     "title": "Dragon Night",
     "artist": "Chrome Garden",
     "price": 299,
