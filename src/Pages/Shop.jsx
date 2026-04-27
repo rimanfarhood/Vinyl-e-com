@@ -1,11 +1,16 @@
-import { useState } from "react";
-import products from "../../data.json";
+import { useState, useEffect } from "react";
+import { getProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
 
 export default function Shop() {
   const [selectedGenre, setSelectedGenre] = useState("All");
+  const [products, setProducts] = useState([]);
 
   const genres = ["All", "Rock", "Jazz", "Hip-Hop", "K-Pop", "Electronic"];
+
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
 
   const filteredProducts =
     selectedGenre === "All"
