@@ -9,7 +9,8 @@
     "year": 2021,
     "description": "Album 'Blonde' by Luna Vex.",
     "imageUrl": "images/blonde.jpg",
-    "createdAt": "2021-01-01"
+    "createdAt": "2021-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "Midnight Echoes",
@@ -21,7 +22,8 @@
     "year": 2019,
     "description": "Album 'Midnight Echoes' by The Velvet Static.",
     "imageUrl": "/images/speed.jpg",
-    "createdAt": "2019-01-01"
+    "createdAt": "2019-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "Moonlit Mirage",
@@ -33,7 +35,8 @@
     "year": 2022,
     "description": "Album 'Moonlit Mirage' by Nova Circuit.",
     "imageUrl": "/images/moon.jpg",
-    "createdAt": "2022-01-01"
+    "createdAt": "2022-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "Sun Set",
@@ -45,7 +48,8 @@
     "year": 2020,
     "description": "Album 'Sun Set' by Arctic Bloom.",
     "imageUrl": "/images/sunset.jpg",
-    "createdAt": "2020-01-01"
+    "createdAt": "2020-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "Electric Horizon",
@@ -57,7 +61,8 @@
     "year": 2023,
     "description": "Album 'Electric Horizon' by Pixel Saints.",
     "imageUrl": "/images/electric_horizon.jpg",
-    "createdAt": "2023-01-01"
+    "createdAt": "2023-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "On the road to nowhere",
@@ -69,7 +74,8 @@
     "year": 2018,
     "description": "Album 'On the road to nowhere' by MonoWave.",
     "imageUrl": "/images/on_the_road.jpg",
-    "createdAt": "2018-01-01"
+    "createdAt": "2018-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "Crimson Frequency",
@@ -81,7 +87,8 @@
     "year": 2021,
     "description": "Album 'Crimson Frequency' by Aurora Drift.",
     "imageUrl": "/images/frequency.jpg",
-    "createdAt": "2021-01-01"
+    "createdAt": "2021-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "Lost Signals",
@@ -93,7 +100,8 @@
     "year": 2020,
     "description": "Album 'Lost Signals' by Echo Harbor.",
     "imageUrl": "/images/forest.jpg",
-    "createdAt": "2020-01-01"
+    "createdAt": "2020-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "The blue ocean",
@@ -105,7 +113,8 @@
     "year": 2024,
     "description": "Album 'The blue ocean' by Neon Cartographer.",
     "imageUrl": "/images/ocean.jpg",
-    "createdAt": "2024-01-01"
+    "createdAt": "2024-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
     "title": "Dragon Night",
@@ -117,6 +126,7 @@
     "year": 2022,
     "description": "Album 'Dragon Night' by Chrome Garden.",
     "imageUrl": "/images/star_night.jpg",
-    "createdAt": "2022-01-01"
+    "createdAt": "2022-01-01",
+    "modifiedAt": "2026-05-01"
   }
 ]
