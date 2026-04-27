@@ -1,112 +1,142 @@
 [
   {
+    "id": 1,
     "title": "Blonde",
     "artist": "Luna Vex",
     "price": 299,
     "genre": "K-Pop",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Blonde' by Luna Vex released in 2021.",
-    "imageUrl": "/images/blonde.jpg",
-    "createdAt": "2021-01-01"
+    "year": 2021,
+    "description": "Album 'Blonde' by Luna Vex.",
+    "imageUrl": "images/blonde.jpg",
+    "createdAt": "2021-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 2,
     "title": "Midnight Echoes",
     "artist": "The Velvet Static",
     "price": 279,
     "genre": "Rock",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Midnight Echoes' by The Velvet Static released in 2019.",
+    "year": 2019,
+    "description": "Album 'Midnight Echoes' by The Velvet Static.",
     "imageUrl": "/images/speed.jpg",
-    "createdAt": "2019-01-01"
+    "createdAt": "2019-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 3,
     "title": "Moonlit Mirage",
     "artist": "Nova Circuit",
     "price": 319,
     "genre": "K-Pop",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Moonlit Mirage' by Nova Circuit released in 2022.",
+    "year": 2022,
+    "description": "Album 'Moonlit Mirage' by Nova Circuit.",
     "imageUrl": "/images/moon.jpg",
-    "createdAt": "2022-01-01"
+    "createdAt": "2022-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 4,
     "title": "Sun Set",
     "artist": "Arctic Bloom",
     "price": 289,
     "genre": "Rock",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Sun Set' by Arctic Bloom released in 2020.",
+    "year": 2020,
+    "description": "Album 'Sun Set' by Arctic Bloom.",
     "imageUrl": "/images/sunset.jpg",
-    "createdAt": "2020-01-01"
+    "createdAt": "2020-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 5,
     "title": "Electric Horizon",
     "artist": "Pixel Saints",
     "price": 309,
     "genre": "Electronic",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Electric Horizon' by Pixel Saints released in 2023.",
+    "year": 2023,
+    "description": "Album 'Electric Horizon' by Pixel Saints.",
     "imageUrl": "/images/electric_horizon.jpg",
-    "createdAt": "2023-01-01"
+    "createdAt": "2023-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 6,
     "title": "On the road to nowhere",
     "artist": "MonoWave",
     "price": 269,
     "genre": "Electronic",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'On the road to nowhere' by MonoWave released in 2018.",
+    "year": 2018,
+    "description": "Album 'On the road to nowhere' by MonoWave.",
     "imageUrl": "/images/on_the_road.jpg",
-    "createdAt": "2018-01-01"
+    "createdAt": "2018-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 7,
     "title": "Crimson Frequency",
     "artist": "Aurora Drift",
     "price": 299,
     "genre": "Electronic",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Crimson Frequency' by Aurora Drift released in 2021.",
+    "year": 2021,
+    "description": "Album 'Crimson Frequency' by Aurora Drift.",
     "imageUrl": "/images/frequency.jpg",
-    "createdAt": "2021-01-01"
+    "createdAt": "2021-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 8,
     "title": "Lost Signals",
     "artist": "Echo Harbor",
     "price": 279,
     "genre": "Electronic",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Lost Signals' by Echo Harbor released in 2020.",
+    "year": 2020,
+    "description": "Album 'Lost Signals' by Echo Harbor.",
     "imageUrl": "/images/forest.jpg",
-    "createdAt": "2020-01-01"
+    "createdAt": "2020-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 9,
     "title": "The blue ocean",
     "artist": "Neon Cartographer",
     "price": 339,
     "genre": "Electronic",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'The blue ocean' by Neon Cartographer released in 2024.",
+    "year": 2024,
+    "description": "Album 'The blue ocean' by Neon Cartographer.",
     "imageUrl": "/images/ocean.jpg",
-    "createdAt": "2024-01-01"
+    "createdAt": "2024-01-01",
+    "modifiedAt": "2026-05-01"
   },
   {
+    "id": 10,
     "title": "Dragon Night",
     "artist": "Chrome Garden",
     "price": 299,
     "genre": "K-Pop",
     "stock": 10,
     "condition": "new",
-    "description": "Album 'Dragon Night' by Chrome Garden released in 2022.",
+    "year": 2022,
+    "description": "Album 'Dragon Night' by Chrome Garden.",
     "imageUrl": "/images/star_night.jpg",
-    "createdAt": "2022-01-01"
+    "createdAt": "2022-01-01",
+    "modifiedAt": "2026-05-01"
   }
 ]
