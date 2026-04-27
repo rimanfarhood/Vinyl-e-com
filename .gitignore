@@ -27,3 +27,8 @@ yarn-error.log*
 # Environment files (local configs)
 /.env.*
 /.vs
+/node_modules
+/vinylstore-d47fe-firebase-adminsdk-fbsvc-be6a1196ac.json
+/package.json
+/package-lock.json
+/import.js
