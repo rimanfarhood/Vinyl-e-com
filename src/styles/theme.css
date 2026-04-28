@@ -45,6 +45,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-heading);
+  font-weight: 500;
   color: var(--color-text);
 }
 
