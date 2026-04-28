@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/productService";
-import ProductCard from "../components/ProductCard";
+import AlbumCard from "../components/AlbumCard";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -13,11 +13,11 @@ export default function Home() {
     <div className="page">
       <h1>Home - Featured Vinyls</h1>
 
-      <div className="product-grid">
+      <section>
         {products.slice(0, 4).map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <AlbumCard key={product.id} album={product} />
         ))}
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,123 @@
+:root {
+  --color-bg: #0e0e0e;
+  --color-bg-soft: #171717;
+  --color-bg-elevated: #202020;
+
+  --color-text: #f5f1e8;
+  --color-text-muted: #cfc7b8;
+  --color-text-dim: #9c9485;
+
+  --color-accent: #c8a96a;
+  --color-accent-hover: #e0c58a;
+
+  --color-border: #333333;
+  --color-border-light: #4a4a4a;
+
+  --color-success: #8fca8f;
+  --color-warning: #d6aa5a;
+  --color-danger: #d37a7a;
+
+  --font-main: system-ui, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.65);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+}
+
+p,
+label,
+span,
+li {
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+button {
+  font-family: var(--font-main);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-light);
+  background-color: var(--color-bg-soft);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button--secondary {
+  background-color: var(--color-bg-soft);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-light);
+}
+
+.button--secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.button--active {
+  background-color: var(--color-accent);
+  color: #111111;
+  border: 1px solid var(--color-accent);
+}
+
+.button--active:hover {
+  background-color: var(--color-accent-hover);
+  color: #111111;
+}
+
+input,
+select {
+  background-color: #121212;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-light);
+}
+
+input::placeholder {
+  color: var(--color-text-dim);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
