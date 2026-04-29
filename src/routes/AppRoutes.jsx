@@ -14,6 +14,9 @@ import Contact from "../Pages/Contact";
 import SearchResults from "../Pages/SearchResults";
 import Success from "../Pages/Success";
 
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -31,6 +34,10 @@ export default function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/success" element={<Success />} />
+          
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          
         </Routes>
       </main>
 

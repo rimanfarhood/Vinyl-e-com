@@ -16,6 +16,9 @@ function Header() {
         <Link to="/">Home</Link>
         <Link to="/shop">Shop</Link>
 
+        {/* NEW: Login link */}
+        <Link to="/login">Login</Link>
+
         <button
           className="header-cart-button button--secondary"
           type="button"
