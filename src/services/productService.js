@@ -5,11 +5,11 @@ const db = getFirestore(app)
 
 export async function getProducts() {
   const snapshot = await getDocs(collection(db, 'vinkyl'))
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+  return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
 }
 
 export async function getProductById(id) {
   const snapshot = await getDoc(doc(db, 'vinkyl', id))
   if (!snapshot.exists()) return null
-  return { id: snapshot.id, ...snapshot.data() }
+  return { ...snapshot.data(), id: snapshot.id }
 }
