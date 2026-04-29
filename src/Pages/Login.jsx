@@ -1,16 +1,33 @@
 import { useState } from "react";
 
 export default function Login() {
-  // Local state for form inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Temporary submit handler
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
 
-    // Placeholder logic (we will connect Firebase later)
-    console.log("Login attempt:", { email, password });
+    if (!email.includes("@")) {
+      setError("Please enter a valid email");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      console.log("Login success:", { email, password });
+    }, 1500);
   };
 
   return (
@@ -21,7 +38,8 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="auth-form">
 
-          {/* Email field */}
+          {error && <p className="error">{error}</p>}
+
           <input
             type="email"
             placeholder="Email address"
@@ -30,21 +48,29 @@ export default function Login() {
             required
           />
 
-          {/* Password field */}
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="password-field">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-          {/* Submit button */}
-          <button type="submit">Login</button>
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </span>
+          </div>
+
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
 
         </form>
 
-        {/* Extra links */}
         <p className="auth-footer">
           Don't have an account? <a href="/register">Register</a>
         </p>
