@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 import { useCart } from "../context/CartContext";
+import { FavoritesContext } from "../context/FavoritesContext";
 
 function AlbumCard({ album }) {
   const { addToCart, getCartQuantity } = useCart();
+
+  // Favorites logic
+  const { favorites, toggleFavorite } = useContext(FavoritesContext);
+  const isFav = favorites.some((item) => item.id === album.id);
 
   const cartQty = getCartQuantity(album.id);
   const isOutOfStock = album.stock <= 0;
@@ -17,6 +23,19 @@ function AlbumCard({ album }) {
 
   return (
     <article className="album-card">
+      
+      {/* ❤️ Favorite Button */}
+      <button
+        className="favorite-btn"
+        onClick={(e) => {
+          e.preventDefault(); // مهم جداً لمنع فتح اللينك
+          toggleFavorite(album);
+        }}
+        aria-label="toggle favorite"
+      >
+        {isFav ? "❤️" : "🤍"}
+      </button>
+
       <Link className="album-card__link" to={`/product/${album.id}-${slug}`}>
         <div className="album-card__image-frame">
           <img
@@ -44,7 +63,11 @@ function AlbumCard({ album }) {
         disabled={disabled}
         onClick={() => addToCart(album)}
       >
-        {isOutOfStock ? "Out of stock" : isAtLimit ? "Max in cart" : "Add to Cart"}
+        {isOutOfStock
+          ? "Out of stock"
+          : isAtLimit
+          ? "Max in cart"
+          : "Add to Cart"}
       </button>
     </article>
   );

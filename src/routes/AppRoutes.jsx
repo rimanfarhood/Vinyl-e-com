@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+import Favorites from "../Pages/Favorites";
+
 import Home from "../Pages/Home";
 import Shop from "../Pages/Shop";
 import ProductPage from "../Pages/ProductPage";
@@ -16,6 +18,8 @@ import Success from "../Pages/Success";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+
+
 
 export default function AppRoutes() {
   return (
@@ -37,6 +41,8 @@ export default function AppRoutes() {
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+  
+         <Route path="/favorites" element={<Favorites />} />
           
         </Routes>
       </main>

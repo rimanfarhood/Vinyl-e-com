@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { FavoritesProvider } from './context/FavoritesContext'
 import './index.css'
 import './styles/theme.css'
 import './styles/layout.css'
@@ -12,13 +13,15 @@ import CartToast from './components/CartToast'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CartProvider>
-      <ShippingProvider>
-        <OrderProvider>
-          <App />
-          <CartToast />
-        </OrderProvider>
-      </ShippingProvider>
-    </CartProvider>
+    <FavoritesProvider>
+      <CartProvider>
+        <ShippingProvider>
+          <OrderProvider>
+            <App />
+            <CartToast />
+          </OrderProvider>
+        </ShippingProvider>
+      </CartProvider>
+    </FavoritesProvider>
   </StrictMode>,
 )

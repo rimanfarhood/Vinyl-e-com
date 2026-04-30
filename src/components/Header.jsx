@@ -1,32 +1,39 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useContext } from "react";
+import { FavoritesContext } from "../context/FavoritesContext";
+
 import { useCart } from "../context/CartContext";
 import CartModal from "./CartModal";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cartItemCount } = useCart();
+  const { favorites } = useContext(FavoritesContext);
 
   return (
     <header>
       <h1>Vinyl Webshop</h1>
 
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/shop">Shop</Link>
+    <nav>
+  <Link to="/">Home</Link>
+  <Link to="/shop">Shop</Link>
 
-        {/* NEW: Login link */}
-        <Link to="/login">Login</Link>
+  <Link to="/favorites">
+    ❤️ ({favorites.length})
+  </Link>
 
-        <button
-          className="header-cart-button button--secondary"
-          type="button"
-          onClick={() => setIsCartOpen(true)}
-        >
-          Cart ({cartItemCount})
-        </button>
-      </nav>
+  <Link to="/login">Login</Link>
+
+  <button
+    className="header-cart-button button--secondary"
+    type="button"
+    onClick={() => setIsCartOpen(true)}
+  >
+    Cart ({cartItemCount})
+  </button>
+</nav>
 
       {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
     </header>
