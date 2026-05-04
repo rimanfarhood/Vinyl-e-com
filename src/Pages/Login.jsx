@@ -1,27 +1,34 @@
 import { useState } from "react";
+import { login } from "../auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  // Local state for form inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  // Temporary submit handler
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Placeholder logic (we will connect Firebase later)
-    console.log("Login attempt:", { email, password });
+    try {
+      const userCredential = await login(email, password);
+      console.log("Logged in:", userCredential.user);
+
+      // Redirect to home
+      navigate("/");
+
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
   };
 
   return (
     <div className="page">
       <div className="auth-container">
-
         <h1>Login</h1>
 
         <form onSubmit={handleSubmit} className="auth-form">
-
-          {/* Email field */}
           <input
             type="email"
             placeholder="Email address"
@@ -30,7 +37,6 @@ export default function Login() {
             required
           />
 
-          {/* Password field */}
           <input
             type="password"
             placeholder="Password"
@@ -39,16 +45,12 @@ export default function Login() {
             required
           />
 
-          {/* Submit button */}
           <button type="submit">Login</button>
-
         </form>
 
-        {/* Extra links */}
         <p className="auth-footer">
           Don't have an account? <a href="/register">Register</a>
         </p>
-
       </div>
     </div>
   );

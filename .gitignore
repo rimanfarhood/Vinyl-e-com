@@ -1,4 +1,8 @@
+# Node
 node_modules/
+
+# macOS
+.DS_Store
 
 # Firebase build and deployment files
 /firebase-debug.log
@@ -29,10 +33,8 @@ yarn-error.log*
 # Environment files (local configs)
 .env
 /.env.*
+env
 !.env.example
-/.vs
-/node_modules
-/vinylstore-d47fe-firebase-adminsdk-fbsvc-be6a1196ac.json
-/package.json
-/package-lock.json
-/import.js
+
+# VS Code
+.vs
