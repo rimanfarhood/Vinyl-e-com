@@ -527,4 +527,92 @@ main section article {
   .product-detail__image {
     max-width: 100%;
   }
+
+}
+
+/* ===== Login / Auth ===== */
+
+.auth-container {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 40px;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.auth-container h1 {
+  margin-bottom: 25px;
+  font-size: 32px;
+  color: #d4af37;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #222;
+  color: white;
+}
+
+.auth-form input:focus {
+  border: 1px solid #d4af37;
+}
+
+.auth-form button {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #d4af37;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-form button:hover {
+  background: #b8962e;
+}
+
+.auth-footer {
+  margin-top: 15px;
+  color: #aaa;
+}
+
+.auth-footer a {
+  color: #d4af37;
+  text-decoration: none;
+}
+
+.password-field {
+  position: relative;
+  width: 100%;
+}
+
+.password-field input {
+  width: 100%;
+  padding: 12px 45px 12px 12px; /* مساحة لزر show */
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: white;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d4af37;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
 }
