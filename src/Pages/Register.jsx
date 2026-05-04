@@ -1,27 +1,39 @@
 import { useState } from "react";
+import { register } from "../auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  // Local state
-  const [name, setName] = useState("");
+  const [name, setName] = useState(""); // optional for later use
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Placeholder (Firebase later)
-    console.log("Register:", { name, email, password });
+    try {
+      const userCredential = await register(email, password);
+      console.log("User created:", userCredential.user);
+
+      // (optional) you can later store name in Firestore
+
+      // Redirect to home
+      navigate("/");
+
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
   };
 
   return (
     <div className="page">
       <div className="auth-container">
-
         <h1>Register</h1>
 
         <form onSubmit={handleSubmit} className="auth-form">
 
-          {/* Name */}
           <input
             type="text"
             placeholder="Full name"
@@ -30,7 +42,6 @@ export default function Register() {
             required
           />
 
-          {/* Email */}
           <input
             type="email"
             placeholder="Email address"
@@ -39,7 +50,6 @@ export default function Register() {
             required
           />
 
-          {/* Password */}
           <input
             type="password"
             placeholder="Password"
@@ -55,7 +65,6 @@ export default function Register() {
         <p className="auth-footer">
           Already have an account? <a href="/login">Login</a>
         </p>
-
       </div>
     </div>
   );
