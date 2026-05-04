@@ -43,7 +43,10 @@ function Header() {
 
   return (
     <header>
-      <Link to="/">Vinyl Webshop</Link>
+      <h1>
+        <Link to="/">Vinyl Webshop</Link>
+      </h1>
+
 
       <nav>
         <Link to="/shop">Shop</Link>
