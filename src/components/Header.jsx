@@ -10,6 +10,8 @@ import CartModal from "./CartModal";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { logout } from "../auth";
+import userIcon from "/icons/ant-design--user-outlined.png";
+import shopIcon from "/icons/ant-design--shopping-cart-outlined.png";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -34,12 +36,16 @@ function Header() {
     }
   };
 
+  const displayName =
+  user?.displayName ||
+  user?.email?.split("@")[0] ||
+  "User";
+
   return (
     <header>
-      <h1>Vinyl Webshop</h1>
+      <Link to="/">Vinyl Webshop</Link>
 
       <nav>
-        <Link to="/">Home</Link>
         <Link to="/shop">Shop</Link>
 
         <Link to="/favorites" className="favorites-link">
@@ -50,9 +56,14 @@ function Header() {
         </Link>
 
         {!user ? (
-          <Link to="/login">Login</Link>
+          
+          <Link to="/login"><img src={userIcon} alt="Login" className="icon" />Login</Link>
         ) : (
-          <button onClick={handleLogout}>Logout</button>
+           <>
+            <span><img src={userIcon} alt="Login" className="icon" />{displayName}</span>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+
         )}
 
         <button
@@ -60,6 +71,7 @@ function Header() {
           type="button"
           onClick={() => setIsCartOpen(true)}
         >
+          <img src={shopIcon} alt="Cart" className="icon" />
           Cart ({cartItemCount})
         </button>
       </nav>

@@ -64,6 +64,23 @@ footer {
   color: var(--color-text-dim);
 }
 
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+/* NEW: Icon styles */
+.icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align: middle;
+  filter: brightness(0) saturate(100%) invert(60%);
+}
+
 @media (max-width: 700px) {
   header {
     flex-direction: column;
