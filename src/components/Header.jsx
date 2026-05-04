@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
+import { useContext } from "react";
+import { FavoritesContext } from "../context/FavoritesContext";
 
 import { useCart } from "../context/CartContext";
 import CartModal from "./CartModal";
@@ -11,16 +14,14 @@ import { logout } from "../auth";
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cartItemCount } = useCart();
-
+  const { favorites } = useContext(FavoritesContext);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // Track login state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-
     return () => unsubscribe();
   }, []);
 
@@ -41,7 +42,13 @@ function Header() {
         <Link to="/">Home</Link>
         <Link to="/shop">Shop</Link>
 
-        {/* 👇 Conditional auth UI */}
+        <Link to="/favorites" className="favorites-link">
+          <span className={`favorites-icon ${favorites.length > 0 ? "active" : ""}`}>
+            <FaHeart />
+          </span>
+          ({favorites.length})
+        </Link>
+
         {!user ? (
           <Link to="/login">Login</Link>
         ) : (
