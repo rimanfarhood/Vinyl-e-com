@@ -635,6 +635,49 @@ main section article {
   transform: scale(1.2);
 }
 
+/* ❤️ Animation */
+.favorite-btn.active {
+  animation: pulse 0.3s ease;
+}
+
+/* Keyframes */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .album-card {
   position: relative;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.favorites-icon {
+  color: white;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.favorites-icon.active {
+  color: #ff3b3b;
+  transform: scale(1.2);
+}
+
+.favorites-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

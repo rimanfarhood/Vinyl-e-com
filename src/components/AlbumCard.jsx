@@ -26,15 +26,14 @@ function AlbumCard({ album }) {
       
       {/* ❤️ Favorite Button */}
       <button
-        className="favorite-btn"
-        onClick={(e) => {
-          e.preventDefault(); // مهم جداً لمنع فتح اللينك
-          toggleFavorite(album);
-        }}
-        aria-label="toggle favorite"
-      >
-        {isFav ? "❤️" : "🤍"}
-      </button>
+  className={`favorite-btn ${isFav ? "active" : ""}`}
+  onClick={(e) => {
+    e.preventDefault();
+    toggleFavorite(album);
+  }}
+>
+  {isFav ? "❤️" : "🤍"}
+</button>
 
       <Link className="album-card__link" to={`/product/${album.id}-${slug}`}>
         <div className="album-card__image-frame">

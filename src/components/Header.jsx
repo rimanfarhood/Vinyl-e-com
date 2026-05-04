@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 import { useContext } from "react";
 import { FavoritesContext } from "../context/FavoritesContext";
@@ -20,9 +21,16 @@ function Header() {
   <Link to="/">Home</Link>
   <Link to="/shop">Shop</Link>
 
-  <Link to="/favorites">
-    ❤️ ({favorites.length})
-  </Link>
+  <Link to="/favorites" className="favorites-link">
+ <span
+  className={`favorites-icon ${
+    favorites.length > 0 ? "active" : ""
+  }`}
+>
+  <FaHeart />
+</span>
+  ({favorites.length})
+</Link>
 
   <Link to="/login">Login</Link>
 
