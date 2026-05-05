@@ -1,9 +1,14 @@
 body {
+  margin: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #root {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 header {
@@ -41,6 +46,7 @@ main {
   width: min(1200px, calc(100% - 32px));
   margin: 0 auto;
   padding: var(--space-6) 0;
+  flex: 1;
 }
 
 main > div > h1 {
@@ -56,19 +62,16 @@ section {
 }
 
 footer {
-  margin-top: var(--space-6);
-  padding: var(--space-4);
+  margin-top: auto;
+  padding: 1rem 2rem;
   text-align: center;
   border-top: 1px solid var(--color-border);
   background-color: var(--color-bg-soft);
   color: var(--color-text-dim);
-}
 
-.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
   flex-wrap: wrap;
 }
 

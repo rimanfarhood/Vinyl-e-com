@@ -10,8 +10,8 @@ import CartModal from "./CartModal";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { logout } from "../auth";
-import userIcon from "/icons/ant-design--user-outlined.png";
-import shopIcon from "/icons/ant-design--shopping-cart-outlined.png";
+import userIcon from "/icons/user.svg";
+import shopIcon from "/icons/shoppingCart.svg";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);

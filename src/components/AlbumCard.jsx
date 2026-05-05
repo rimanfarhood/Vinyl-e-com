@@ -41,6 +41,7 @@ function AlbumCard({ album }) {
             className="album-card__image"
             src={album.imageUrl}
             alt={album.title}
+            loading="lazy"
           />
         </div>
 

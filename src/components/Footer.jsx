@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import mailIcon from "/icons/ant-design--mail-outlined.png";
+import mailIcon from "/icons/mail.svg";
 
 function Footer() {
   return (
