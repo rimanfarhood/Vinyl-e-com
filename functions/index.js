@@ -7,10 +7,32 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
-const logger = require("firebase-functions/logger");
 
+
+const functions = require("firebase-functions");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+exports.createCheckoutSession = functions.https.onCall(async (data, context) => {
+    const { items } = data;
+
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        mode: "payment",
+        line_items: items.map(item => ({
+            price_data: {
+                currency: "sek",
+                product_data: {
+                    name: item.name,
+                },
+                unit_amount: item.price * 100,
+            },
+            quantity: item.quantity,
+        })),
+        success_url: "http://localhost:3000/success",
+        cancel_url: "http://localhost:3000/cancel",
+    });
+    return { id: session.id };
+});
 // For cost control, you can set the maximum number of containers that can be
 // running at the same time. This helps mitigate the impact of unexpected
 // traffic spikes by instead downgrading performance. This limit is a
