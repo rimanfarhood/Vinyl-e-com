@@ -1,3 +1,6 @@
+/* =========================
+   BASE
+========================= */
 body {
   min-height: 100vh;
 }
@@ -6,6 +9,9 @@ body {
   min-height: 100vh;
 }
 
+/* =========================
+   HEADER
+========================= */
 header {
   display: flex;
   justify-content: space-between;
@@ -22,6 +28,9 @@ header h1 {
   letter-spacing: 0.5px;
 }
 
+/* =========================
+   NAVIGATION
+========================= */
 nav {
   display: flex;
   align-items: center;
@@ -37,24 +46,18 @@ nav a:hover {
   color: var(--color-accent);
 }
 
+/* =========================
+   MAIN
+========================= */
 main {
   width: min(1200px, calc(100% - 32px));
   margin: 0 auto;
   padding: var(--space-6) 0;
 }
 
-main > div > h1 {
-  text-align: center;
-  margin-bottom: var(--space-5);
-}
-
-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 220px);
-  justify-content: center;
-  gap: 20px;
-}
-
+/* =========================
+   FOOTER
+========================= */
 footer {
   margin-top: var(--space-6);
   padding: var(--space-4);
@@ -72,7 +75,9 @@ footer {
   flex-wrap: wrap;
 }
 
-/* NEW: Icon styles */
+/* =========================
+   ICONS
+========================= */
 .icon {
   width: 18px;
   height: 18px;
@@ -81,6 +86,145 @@ footer {
   filter: brightness(0) saturate(100%) invert(60%);
 }
 
+/* =========================
+   LOGO
+========================= */
+.logo a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 26px;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.logo a:hover {
+  text-shadow: 0 0 8px white;
+}
+
+.logo-img {
+  height: 60px;
+  object-fit: contain;
+  transition: all 0.2s ease;
+}
+
+.logo-img:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+/* =========================
+   USER INFO
+========================= */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* =========================
+   🔥 PRODUCT CAROUSEL
+========================= */
+.product-carousel {
+  position: relative;
+  padding: 20px;
+}
+
+.product-carousel h2 {
+  margin-bottom: 15px;
+}
+
+/* 🔥 ARROWS ON SIDES */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: -20px;   
+  width: calc(100% + 40px);
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* BUTTON STYLE */
+.carousel-controls button {
+  pointer-events: all;
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+/* HOVER */
+.carousel-controls button:hover {
+  box-shadow: 0 0 15px white;
+  transform: scale(1.1);
+}
+
+/* POSITION FIX */
+.carousel-controls button:first-child {
+  margin-left: 0;
+}
+.carousel-controls button:last-child {
+  margin-right: 0;
+}
+.carousel-controls button:last-child {
+  margin-right: 10px;
+}
+
+/* TRACK */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+
+  scroll-snap-type: x mandatory;
+}
+
+/* HIDE SCROLLBAR */
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ITEMS */
+.carousel-item {
+  min-width: 220px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* =========================
+   FADE EFFECT
+========================= */
+.product-carousel::before,
+.product-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.product-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, #000, transparent);
+}
+
+.product-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, #000, transparent);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 700px) {
   header {
     flex-direction: column;
@@ -96,5 +240,9 @@ footer {
   main {
     width: min(100% - 20px, 1200px);
     padding: var(--space-5) 0;
+  }
+
+  .logo-img {
+    height: 45px;
   }
 }

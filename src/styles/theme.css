@@ -3,19 +3,20 @@
   --color-bg-soft: #171717;
   --color-bg-elevated: #202020;
 
-  --color-text: #f5f1e8;
-  --color-text-muted: #cfc7b8;
-  --color-text-dim: #9c9485;
+  --color-text: #ffffff;
+  --color-text-muted: #ffffff;
+  --color-text-dim: #ffffff;
 
-  --color-accent: #c8a96a;
-  --color-accent-hover: #e0c58a;
+ 
+  --color-accent: #ffffff;
+  --color-accent-hover: #ffffff;
 
   --color-border: #333333;
   --color-border-light: #4a4a4a;
 
-  --color-success: #8fca8f;
-  --color-warning: #d6aa5a;
-  --color-danger: #d37a7a;
+  --color-success: #ffffff;
+  --color-warning: #ffffff;
+  --color-danger: #ffffff;
 
   --font-main: system-ui, sans-serif;
   --font-heading: Georgia, "Times New Roman", serif;
@@ -41,6 +42,7 @@ body {
   color: var(--color-text);
 }
 
+/* HEADINGS */
 h1,
 h2,
 h3 {
@@ -49,6 +51,7 @@ h3 {
   color: var(--color-text);
 }
 
+/* TEXT */
 p,
 label,
 span,
@@ -56,15 +59,18 @@ li {
   color: var(--color-text);
 }
 
+/* LINKS */
 a {
-  color: var(--color-accent);
+  color: var(--color-text);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--color-accent-hover);
+  color: white;
+  text-shadow: 0 0 6px white;
 }
 
+/* BUTTONS */
 button {
   font-family: var(--font-main);
   border-radius: var(--radius-sm);
@@ -72,18 +78,22 @@ button {
   background-color: var(--color-bg-soft);
   color: var(--color-text);
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: white;
+  box-shadow: 0 0 10px white;
+  color: white;
 }
 
+/* DISABLED */
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+/* SECONDARY BUTTON */
 .button--secondary {
   background-color: var(--color-bg-soft);
   color: var(--color-text);
@@ -91,21 +101,24 @@ button:disabled {
 }
 
 .button--secondary:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: white;
+  box-shadow: 0 0 10px white;
+  color: white;
 }
 
+/* ACTIVE BUTTON */
 .button--active {
-  background-color: var(--color-accent);
-  color: #111111;
-  border: 1px solid var(--color-accent);
+  background-color: white;
+  color: black;
+  border: 1px solid white;
 }
 
 .button--active:hover {
-  background-color: var(--color-accent-hover);
-  color: #111111;
+  background-color: white;
+  color: black;
 }
 
+/* INPUTS */
 input,
 select {
   background-color: #121212;
@@ -114,11 +127,13 @@ select {
 }
 
 input::placeholder {
-  color: var(--color-text-dim);
+  color: white;
+  opacity: 0.6;
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: white;
+  box-shadow: 0 0 6px white;
 }

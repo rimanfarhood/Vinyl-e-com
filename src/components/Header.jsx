@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useContext } from "react";
 import { FavoritesContext } from "../context/FavoritesContext";
+import logo from "../assets/logo.png";
 
 import { useCart } from "../context/CartContext";
 import CartModal from "./CartModal";
@@ -43,9 +44,11 @@ function Header() {
 
   return (
     <header>
-      <h1>
-        <Link to="/">Vinyl Webshop</Link>
-      </h1>
+      <h1 className="logo">
+     <Link to="/">
+      <img src={logo} alt="Vinyllo" className="logo-img" />
+    </Link>
+    </h1>
 
 
       <nav>
@@ -63,7 +66,10 @@ function Header() {
           <Link to="/login"><img src={userIcon} alt="Login" className="icon" />Login</Link>
         ) : (
            <>
-            <span><img src={userIcon} alt="Login" className="icon" />{displayName}</span>
+            <div className="user-info">
+             <img src={userIcon} alt="User" className="icon" />
+             <span>{displayName}</span>
+           </div>
             <button onClick={handleLogout}>Logout</button>
           </>
 
