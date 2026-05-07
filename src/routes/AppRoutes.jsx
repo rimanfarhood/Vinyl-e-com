@@ -18,6 +18,7 @@ import Success from "../Pages/Success";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Profile from "../Pages/Profile";
 
 
 
@@ -41,6 +42,7 @@ export default function AppRoutes() {
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
   
          <Route path="/favorites" element={<Favorites />} />  
           
