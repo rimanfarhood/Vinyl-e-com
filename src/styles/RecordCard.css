@@ -175,51 +175,46 @@
 /* ===================== */
 
 .record-expanded {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  width: 700px;
-  margin-top: 20px;
-  z-index: 100;
+  width: 300px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0;
+  padding: 0 20px;
 
   background: #f4f1ea;
   border-radius: 16px;
-  padding: 25px;
-
   font-family: "Libre Baskerville", serif;
-
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.3s ease, padding 0.3s ease;
 }
 
 .record-expanded.show {
+  max-height: 600px;
   opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+  margin-top: 20px;
+  padding: 20px;
 }
 
 /* LAYOUT */
 .expanded-content {
   display: flex;
-  gap: 30px;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
 }
 
 /* LEFT SIDE */
 .expanded-left img {
-  width: 160px;
-  height: 160px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* RIGHT SIDE */
 .expanded-right {
-  flex: 1;
+  width: 100%;
 }
 
 /* TITLE */
@@ -279,6 +274,12 @@
   margin-top: 8px;
   font-size: 12px;
   color: green;
+}
+
+@media (max-width: 700px) {
+  .record-expanded {
+    width: 240px;
+  }
 }
 
 /* VISA MER LÄNK */
