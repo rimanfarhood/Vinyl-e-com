@@ -138,26 +138,6 @@ footer {
   margin-bottom: 15px;
 }
 
-.product-carousel::before,
-.product-carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 80px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.product-carousel::before {
-  left: 0;
-  background: linear-gradient(to right, var(--color-bg), transparent);
-}
-
-.product-carousel::after {
-  right: 0;
-  background: linear-gradient(to left, var(--color-bg), transparent);
-}
 
 /* 🔥 ARROWS ON SIDES */
 .carousel-controls {
@@ -193,7 +173,7 @@ footer {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 181px;
+  padding-top: 201px;
   cursor: pointer;
   transition: color 0.2s ease;
   height: 100%;
@@ -220,8 +200,11 @@ footer {
   align-items: flex-start;
   gap: 20px;
   overflow-x: auto;
+  padding-top: 20px;
   padding-bottom: 10px;
   min-height: 920px;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 
 }
 
