@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getProducts } from "../services/productService";
+import { Link, useNavigate } from "react-router-dom";
 import AlbumCard from "../components/AlbumCard";
 
 export default function Home() {
@@ -92,6 +93,22 @@ export default function Home() {
   };
 
   return (
+    <>
+    {/* Hero Section */}
+    <div className="hero">
+      <div>
+        <h1>Discover Your Next Favorite Vinyl</h1>
+        <p>
+          Explore curated music collections, trending releases, and timeless classics.
+        </p>
+
+        <Link to="/shop" className="hero-button">
+          Browse Collection
+        </Link>
+
+        </div>
+      </div>
+
     <div className="product-carousel">
       <h2>Featured Products</h2>
 
@@ -120,5 +137,6 @@ export default function Home() {
         ))}
       </div>
     </div>
+    </>
   );
 }
