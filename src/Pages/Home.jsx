@@ -1,142 +1,133 @@
 import { useState, useEffect, useRef } from "react";
 import { getProducts } from "../services/productService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AlbumCard from "../components/AlbumCard";
+
+const SCROLL_SPEED = 80; // pixels per second
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  const [isAtStart, setIsAtStart] = useState(true);
-  const [isAtEnd, setIsAtEnd] = useState(false);
-
+  const [flippedIds, setFlippedIds] = useState({});
   const trackRef = useRef(null);
-  const intervalRef = useRef(null);
+  const rafRef = useRef(null);
+  const lastTimeRef = useRef(null);
+  const pausedRef = useRef(false);
+
+  const toggleFlip = (id) =>
+    setFlippedIds((prev) => ({ ...prev, [id]: !prev[id] }));
 
   useEffect(() => {
     getProducts().then(setProducts);
   }, []);
 
-  /* 🔥 TRACK POSITION DETECTION */
+  // Start at beginning of middle copy
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || products.length === 0) return;
+    setTimeout(() => {
+      track.scrollLeft = track.scrollWidth / 3;
+    }, 50);
+  }, [products]);
 
-    const handleScroll = () => {
-      setIsAtStart(track.scrollLeft <= 0);
-
-      setIsAtEnd(
-        track.scrollLeft + track.clientWidth >= track.scrollWidth - 5
-      );
-    };
-
-    handleScroll(); // 🔥 initial check
-
-    track.addEventListener("scroll", handleScroll);
-    return () => track.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  /* 🔥 AUTO SCROLL + LOOP */
+  // RAF auto-scroll — keeps user in middle copy, resets silently at 1/3 boundaries
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || products.length === 0) return;
 
-    const scrollStep = () => {
-      const isEnd =
-        track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+    const animate = (time) => {
+      if (!pausedRef.current && track) {
+        if (lastTimeRef.current !== null) {
+          const delta = ((time - lastTimeRef.current) / 1000) * SCROLL_SPEED;
+          const third = track.scrollWidth / 3;
 
-      if (isEnd) {
-        track.scrollTo({ left: 0, behavior: "smooth" });
+          track.scrollLeft += delta;
+
+          if (track.scrollLeft >= third * 2) {
+            track.scrollLeft -= third;
+          } else if (track.scrollLeft < third) {
+            track.scrollLeft += third;
+          }
+        }
+        lastTimeRef.current = time;
       } else {
-        track.scrollBy({ left: 250, behavior: "smooth" });
+        lastTimeRef.current = null;
       }
+      rafRef.current = requestAnimationFrame(animate);
     };
 
-    setTimeout(scrollStep, 500);
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [products]);
 
-    intervalRef.current = setInterval(scrollStep, 3000);
+  const handleMouseEnter = () => { pausedRef.current = true; };
+  const handleMouseLeave = () => { pausedRef.current = false; };
 
-    return () => clearInterval(intervalRef.current);
-  }, []);
-
-  /* ⏸️ PAUSE ON HOVER */
-  const handleMouseEnter = () => {
-    clearInterval(intervalRef.current);
-  };
-
-  const handleMouseLeave = () => {
-    const track = trackRef.current;
-
-    intervalRef.current = setInterval(() => {
-      if (!track) return;
-
-      const isEnd =
-        track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
-
-      if (isEnd) {
-        track.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        track.scrollBy({ left: 250, behavior: "smooth" });
-      }
-    }, 3000);
-  };
-
-  /* ⬅️➡️ BUTTONS */
   const scrollLeft = () => {
-    if (trackRef.current) {
-      trackRef.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
+    const track = trackRef.current;
+    if (!track) return;
+    const third = track.scrollWidth / 3;
+    track.scrollLeft -= 300;
+    if (track.scrollLeft < third) track.scrollLeft += third;
   };
 
   const scrollRight = () => {
-    if (trackRef.current) {
-      trackRef.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
+    const track = trackRef.current;
+    if (!track) return;
+    const third = track.scrollWidth / 3;
+    track.scrollLeft += 300;
+    if (track.scrollLeft >= third * 2) track.scrollLeft -= third;
   };
+
+  const loopedProducts = [...products, ...products, ...products];
 
   return (
     <>
-    {/* Hero Section */}
-    <div className="hero">
-      <div>
-        <h1>Discover Your Next Favorite Vinyl</h1>
-        <p>
-          Explore curated music collections, trending releases, and timeless classics.
-        </p>
-
-        <Link to="/shop" className="hero-button">
-          Browse Collection
-        </Link>
-
+      <div className="hero">
+        <div>
+          <h1>Discover Your Next Favorite Vinyl</h1>
+          <p>
+            Explore curated music collections, trending releases, and timeless classics.
+          </p>
+          <Link to="/shop" className="hero-button">
+            Browse Collection
+          </Link>
         </div>
       </div>
 
-    <div className="product-carousel">
-      <h2>Featured Products</h2>
-
-      {/* 🔥 CONTROLS */}
-      <div className="carousel-controls">
-        <button onClick={scrollLeft} disabled={isAtStart}>
-          ←
-        </button>
-
-        <button onClick={scrollRight} disabled={isAtEnd}>
-          →
-        </button>
-      </div>
-
-      {/* 🔥 TRACK */}
       <div
-        className="carousel-track"
-        ref={trackRef}
+        className="product-carousel"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleMouseEnter}
+        onTouchEnd={handleMouseLeave}
       >
-        {products.slice(0, 10).map((product) => (
-          <div className="carousel-item" key={product.id}>
-            <AlbumCard album={product} />
-          </div>
-        ))}
+        <h2>Featured Products</h2>
+
+        <div className="carousel-controls">
+          <button onClick={scrollLeft} aria-label="Scroll left">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <button onClick={scrollRight} aria-label="Scroll right">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="carousel-track" ref={trackRef}>
+          {loopedProducts.map((product, index) => (
+            <div className="carousel-item" key={`${product.id}-${index}`}>
+              <AlbumCard
+                album={product}
+                isFlipped={!!flippedIds[product.id]}
+                onFlip={toggleFlip}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 }

@@ -5,7 +5,7 @@ import { useCart } from "../context/CartContext";
 import { FavoritesContext } from "../context/FavoritesContext";
 import "../styles/RecordCard.css";
 
-export default function AlbumCard({ album }) {
+export default function AlbumCard({ album, isFlipped: isFlippedProp, onFlip }) {
   const { addToCart, getCartQuantity } = useCart();
 
   // ❤️ Favorites
@@ -24,8 +24,13 @@ export default function AlbumCard({ album }) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-  // 🎛 UI state
-  const [flipped, setFlipped] = useState(false);
+  // 🎛 UI state — use prop if provided (carousel), otherwise local state (shop/favorites)
+  const [localFlipped, setLocalFlipped] = useState(false);
+  const flipped = isFlippedProp !== undefined ? isFlippedProp : localFlipped;
+  const setFlipped = (val) => {
+    if (onFlip) onFlip(album.id);
+    else setLocalFlipped(val);
+  };
   const [visibleTracks, setVisibleTracks] = useState([]);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 

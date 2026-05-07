@@ -138,56 +138,90 @@ footer {
   margin-bottom: 15px;
 }
 
+.product-carousel::before,
+.product-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.product-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+.product-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg), transparent);
+}
+
 /* 🔥 ARROWS ON SIDES */
 .carousel-controls {
   position: absolute;
-  top: 50%;
-  left: -30px;
-  width: calc(100% + 60px);
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   pointer-events: none;
   z-index: 10;
 }
 
 
 /* BUTTON STYLE */
+.carousel-controls {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.product-carousel:hover .carousel-controls {
+  opacity: 1;
+}
+
 .carousel-controls button {
   pointer-events: all;
-  background: rgba(255, 255, 255, 0.9);
-  color: black;
+  background: none;
   border: none;
-  padding: 12px 16px;
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 181px;
   cursor: pointer;
-  font-size: 18px;
-  transition: all 0.2s ease;
-  border-radius: 6px;
+  transition: color 0.2s ease;
+  height: 100%;
+  width: 48px;
 }
 
 /* HOVER */
 .carousel-controls button:hover {
-  box-shadow: 0 0 15px white;
-  transform: scale(1.1);
+  color: white;
+  border: none;
+  box-shadow: none;
 }
 
 /* DISABLED */
 .carousel-controls button:disabled {
-  opacity: 0.3;
+  opacity: 0;
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
 }
 
 /* TRACK */
 .carousel-track {
   display: flex;
+  align-items: flex-start;
   gap: 20px;
   overflow-x: auto;
-  scroll-behavior: smooth;
   padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
-  min-height: 750px;
+  min-height: 920px;
 
 }
 
@@ -206,26 +240,6 @@ footer {
 /* =========================
    FADE EFFECT
 ========================= */
-.product-carousel::before,
-.product-carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 60px;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.product-carousel::before {
-  left: 0;
-  background: linear-gradient(to right, #000, transparent);
-}
-
-.product-carousel::after {
-  right: 0;
-  background: linear-gradient(to left, #000, transparent);
-}
 
 /* =========================
    RESPONSIVE
@@ -252,8 +266,7 @@ footer {
   }
 
   .carousel-controls {
-    left: -10px;
-    width: calc(100% + 20px);
+    display: none;
   }
 }
 
