@@ -7,6 +7,7 @@
   height: 300px;
   perspective: 1000px;
   perspective-origin: center;
+  position: relative;
 }
 
 .grid {
@@ -162,6 +163,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.card-container .favorite-btn {
+  z-index: 10;
 }
 
 /* ===================== */
@@ -268,4 +274,19 @@
   margin-top: 8px;
   font-size: 12px;
   color: green;
+}
+
+/* VISA MER LÄNK */
+.product-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #888;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+
+.product-link:hover {
+  color: #000;
 }

@@ -60,23 +60,22 @@ export default function AlbumCard({ album }) {
   return (
     <div className="record-wrapper">
 
-      {/* ❤️ Favorite */}
-      <button
-        className={`favorite-btn ${isFav ? "active" : ""}`}
-        onClick={(e) => {
-          e.preventDefault();
-          toggleFavorite(album);
-        }}
-      >
-        {isFav ? "❤️" : "🤍"}
-      </button>
-
       {/* CARD */}
       <div
         className="card-container"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
+        {/* ❤️ Favorite */}
+        <button
+          className={`favorite-btn ${isFav ? "active" : ""}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleFavorite(album);
+          }}
+        >
+          {isFav ? "❤️" : "🤍"}
+        </button>
         <div
           className={`card ${flipped ? "flipped" : ""}`}
           style={{
@@ -88,10 +87,8 @@ export default function AlbumCard({ album }) {
           }}
         >
           {/* FRONT */}
-          <div className="card-side front">
-            <Link to={`/product/${album.id}-${slug}`}>
-              <img src={album.imageUrl} alt={album.title} />
-            </Link>
+          <div className="card-side front" onClick={() => setFlipped(true)}>
+            <img src={album.imageUrl} alt={album.title} />
           </div>
 
           {/* BACK */}
@@ -113,14 +110,6 @@ export default function AlbumCard({ album }) {
           </div>
         </div>
       </div>
-
-      {/* CLICK TO FLIP */}
-      <button
-        className="flip-btn"
-        onClick={() => setFlipped((prev) => !prev)}
-      >
-        {flipped ? "Close" : "View Tracks"}
-      </button>
 
       {/* 🔥 EXPANDED PANEL */}
       <div className={`record-expanded ${flipped ? "show" : ""}`}>
@@ -164,6 +153,13 @@ export default function AlbumCard({ album }) {
             <p className="stock">
               {album.stock > 0 ? "In Stock" : "Out of Stock"}
             </p>
+
+            <Link
+              className="product-link"
+              to={`/product/${album.id}-${slug}`}
+            >
+              Visa mer →
+            </Link>
           </div>
 
         </div>
