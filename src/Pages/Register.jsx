@@ -13,12 +13,8 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const userCredential = await register(email, password);
+      const userCredential = await register(email, password, name);
       console.log("User created:", userCredential.user);
-
-      // (optional) you can later store name in Firestore
-
-      // Redirect to home
       navigate("/");
 
     } catch (error) {
