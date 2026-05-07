@@ -190,7 +190,7 @@
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin: 28px 0 0;
+  margin: 30px 0 0;
   flex-wrap: wrap;
 }
 
@@ -622,7 +622,7 @@ main section article {
 
 .password-field input {
   width: 100%;
-  padding: 12px 45px 12px 12px; /* مساحة لزر show */
+  padding: 12px 45px 12px 12px;
   border-radius: 8px;
   border: none;
   background: #222;
@@ -721,4 +721,90 @@ main section article {
 .page-title {
   text-align: center;
   margin-bottom: 30px;
+}
+
+.page-indicator {
+  width: min(1200px, calc(100% - 32px));
+  margin: 10px auto;
+  display: flex;
+  justify-content: flex-start; 
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ===== SHOP HEADER ===== */
+.shop-header {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-indicator-inline {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  background: rgba(255,255,255,0.05);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* ===== META BAR (FIXED CLEAN) ===== */
+.shop-meta {
+  width: min(1200px, calc(100% - 32px));
+  margin: 10px auto 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LEFT */
+.results-count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* RIGHT */
+.sort-indicator {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: rgba(255,255,255,0.05);
+  padding: 6px 12px;
+  border-radius: 6px;
+  opacity: 0.85;
+}
+
+/* ===== BADGE ===== */
+.out-of-stock-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.sort-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-box label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.sort-box select {
+  background: var(--color-bg-soft);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-light);
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
 }
