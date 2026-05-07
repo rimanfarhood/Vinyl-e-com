@@ -1,73 +1,28 @@
-import {
-  useEffect,
-  useContext,
-  useState,
-} from "react";
-
-import {
-  useNavigate,
-  Link,
-} from "react-router-dom";
-
-import {
-  doc,
-  getDoc,
-} from "firebase/firestore";
-
+import { useEffect, useContext, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
-
 import { FavoritesContext } from "../context/FavoritesContext";
-
-import AlbumCard from "../components/AlbumCard";
 
 export default function Profile() {
   const navigate = useNavigate();
+  const { favorites } = useContext(FavoritesContext);
+  const [favoriteAlbums, setFavoriteAlbums] = useState([]);
 
-  const { favorites } = useContext(
-    FavoritesContext
-  );
-
-  const [favoriteAlbums, setFavoriteAlbums] =
-    useState([]);
-
-  // 🔒 Protect route
   useEffect(() => {
-    if (!auth.currentUser) {
-      navigate("/login");
-    }
+    if (!auth.currentUser) navigate("/login");
   }, [navigate]);
 
-  // ❤️ Fetch favorite albums
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const albums = [];
-
-        for (const favoriteId of favorites) {
-
-          const docRef = doc(
-            db,
-            "vinyl_webp",
-            favoriteId
-          );
-
-          const snapshot = await getDoc(
-            docRef
-          );
-
-          if (snapshot.exists()) {
-
-            albums.push({
-              ...snapshot.data(),
-
-              // ✅ Use Firestore ID
-              id: snapshot.id,
-            });
-          }
-        }
-
+        const snapshots = await Promise.all(
+          favorites.map((id) => getDoc(doc(db, "vinyl_webp", id)))
+        );
+        const albums = snapshots
+          .filter((s) => s.exists())
+          .map((s) => ({ ...s.data(), id: s.id }));
         setFavoriteAlbums(albums);
-
       } catch (error) {
         console.error(error);
       }
@@ -78,7 +33,6 @@ export default function Profile() {
     } else {
       setFavoriteAlbums([]);
     }
-
   }, [favorites]);
 
   if (!auth.currentUser) return null;
@@ -89,74 +43,68 @@ export default function Profile() {
     "User";
 
   return (
-    <div className="page">
+    <div className="profile-layout">
 
-      <h1>My Profile</h1>
+      {/* LEFT COLUMN */}
+      <aside className="profile-left">
 
-      {/* 👤 User info */}
-      <section className="profile-section">
-
-        <h2>Account Information</h2>
-
-        <p>
-          <strong>Name:</strong>{" "}
-          {displayName}
-        </p>
-
-        <p>
-          <strong>Email:</strong>{" "}
-          {auth.currentUser.email}
-        </p>
-
-      </section>
-
-      {/* ❤️ Favorites */}
-      <section className="profile-section">
-
-        <div className="profile-header-row">
-
-          <h2>Favorites</h2>
-
-          <Link to="/favorites">
-            View All
-          </Link>
-
+        <div className="profile-card">
+          <h2>Account</h2>
+          <div className="profile-info">
+            <span className="profile-info__label">Name</span>
+            <span className="profile-info__value">{displayName}</span>
+            <span className="profile-info__label">Email</span>
+            <span className="profile-info__value">{auth.currentUser.email}</span>
+          </div>
         </div>
 
-        {favoriteAlbums.length === 0 ? (
-          <p>No favorites added yet.</p>
-        ) : (
-          <div className="album-grid">
+        <div className="profile-card">
+          <h2>Orders</h2>
+          <p className="profile-empty">No orders yet.</p>
+        </div>
 
-            {favoriteAlbums
-              .slice(0, 4)
-              .map((album) => (
-                <AlbumCard
-                  key={album.id}
-                  album={album}
-                />
-              ))}
+        <div className="profile-card">
+          <h2>Receipts</h2>
+          <p className="profile-empty">No receipts available.</p>
+        </div>
 
+      </aside>
+
+      {/* RIGHT COLUMN */}
+      <section className="profile-right">
+
+        <div className="profile-card profile-card--full">
+          <div className="profile-card__header">
+            <h2>Favorites</h2>
+            {favoriteAlbums.length > 0 && (
+              <Link to="/favorites" className="profile-view-all">View all</Link>
+            )}
           </div>
-        )}
 
-      </section>
-
-      {/* 📦 Orders */}
-      <section className="profile-section">
-
-        <h2>Orders</h2>
-
-        <p>No orders yet.</p>
-
-      </section>
-
-      {/* 🧾 Receipts */}
-      <section className="profile-section">
-
-        <h2>Receipts</h2>
-
-        <p>No receipts available.</p>
+          {favoriteAlbums.length === 0 ? (
+            <p className="profile-empty">No favorites added yet.</p>
+          ) : (
+            <div className="profile-favorites-grid">
+              {favoriteAlbums.slice(0, 4).map((album) => {
+                const slug = album.title
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/^-|-$/g, "");
+                return (
+                  <Link
+                    key={album.id}
+                    to={`/product/${album.id}-${slug}`}
+                    className="profile-album"
+                  >
+                    <img src={album.imageUrl} alt={album.title} />
+                    <span className="profile-album__title">{album.title}</span>
+                    <span className="profile-album__artist">{album.artist}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
       </section>
 

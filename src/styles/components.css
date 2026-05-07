@@ -1133,3 +1133,140 @@ main section article {
     gap: 2rem;
   }
 }
+
+/* ===================== */
+/* PROFILE PAGE */
+/* ===================== */
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.profile-card {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.profile-card h2 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-family: var(--font-main);
+  font-weight: 600;
+}
+
+.profile-card--full {
+  margin-bottom: 0;
+}
+
+.profile-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.profile-card__header h2 {
+  margin: 0;
+}
+
+.profile-view-all {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.profile-view-all:hover {
+  opacity: 1;
+  text-shadow: none;
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  align-items: baseline;
+}
+
+.profile-info__label {
+  font-size: 12px;
+  opacity: 0.45;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.profile-info__value {
+  font-size: 14px;
+}
+
+.profile-empty {
+  font-size: 13px;
+  opacity: 0.45;
+  margin: 0;
+}
+
+.profile-favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.profile-album {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+
+.profile-album:hover {
+  opacity: 0.8;
+  text-shadow: none;
+}
+
+.profile-album img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.profile-album__title {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-album__artist {
+  font-size: 12px;
+  opacity: 0.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1024px) {
+  .profile-favorites-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
