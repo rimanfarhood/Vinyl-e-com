@@ -1,4 +1,34 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import { FaRecordVinyl, FaMusic, FaStar, FaHeart } from "react-icons/fa";
+
+const cards = [
+  {
+    Icon: FaRecordVinyl,
+    title: "Who We Are",
+    text: "An online store focused on vinyl records, built to make discovering and buying music simple and enjoyable.",
+  },
+  {
+    Icon: FaMusic,
+    title: "Our Selection",
+    text: "From iconic albums to hidden gems, every record is chosen with intention — prioritizing quality, authenticity, and music that lasts.",
+  },
+  {
+    Icon: FaStar,
+    title: "The Experience",
+    text: "Clean, fast, and intuitive. Our platform is designed so you can focus on finding the right record, not navigating complexity.",
+  },
+  {
+    Icon: FaHeart,
+    title: "Why Vinyl",
+    text: "Vinyl creates a physical connection to music — something digital formats cannot replicate.",
+  },
+];
+
+const stats = [
+  { value: "500+", label: "Records" },
+  { value: "20+", label: "Genres" },
+  { value: "100%", label: "Curated" },
+];
 
 export default function About() {
   return (
