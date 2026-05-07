@@ -4,25 +4,51 @@ import AlbumCard from "../components/AlbumCard";
 import { filterAlbums } from "../services/filterAlbums";
 
 export default function Shop() {
+
+  /* =========================
+     STATE
+  ========================= */
   const [albums, setAlbums] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-  const [showNumericalSearch, setShowNumericalSearch] = useState(false);
-  const [yearMin, setYearMin] = useState("");
-  const [yearMax, setYearMax] = useState("");
-  const [priceMin, setPriceMin] = useState("");
-  const [priceMax, setPriceMax] = useState("");
-  const [stockMin, setStockMin] = useState("");
-  const [stockMax, setStockMax] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  // 🔥 NEW STATE
+  const [sortOption, setSortOption] = useState("price-asc");
+
+  /* =========================
+     LOAD DATA
+  ========================= */
   useEffect(() => {
     getProducts().then(setAlbums);
   }, []);
 
-  const isMobile = window.matchMedia("(max-width: 700px)").matches;
+  /* =========================
+     SCROLL TO TOP
+  ========================= */
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
+  /* =========================
+     RESPONSIVE
+  ========================= */
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 700);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const albumsPerPage = isMobile ? 4 : 8;
 
+  /* =========================
+     FILTERING
+  ========================= */
   const genreFilteredAlbums =
     selectedGenre === "All"
       ? albums
@@ -30,21 +56,50 @@ export default function Shop() {
 
   const searchedAlbums = filterAlbums(genreFilteredAlbums, {
     searchTerm,
-    yearMin,
-    yearMax,
-    priceMin,
-    priceMax,
-    stockMin,
-    stockMax,
   });
 
-  const totalPages = Math.ceil(searchedAlbums.length / albumsPerPage);
+  /* =========================
+     SORTING
+  ========================= */
+  const sortedAlbums = [...searchedAlbums].sort((a, b) => {
+    const aInStock = a.stock > 0 ? 1 : 0;
+    const bInStock = b.stock > 0 ? 1 : 0;
+
+    // in-stock first
+    if (aInStock !== bInStock) {
+      return bInStock - aInStock;
+    }
+
+    // sort options
+    switch (sortOption) {
+      case "price-asc":
+        return a.price - b.price;
+
+      case "price-desc":
+        return b.price - a.price;
+
+      case "name":
+        return a.title.localeCompare(b.title);
+
+      default:
+        return 0;
+    }
+  });
+
+  /* =========================
+     PAGINATION
+  ========================= */
+  const totalPages = Math.ceil(sortedAlbums.length / albumsPerPage);
   const startIndex = (currentPage - 1) * albumsPerPage;
-  const visibleAlbums = searchedAlbums.slice(
+
+  const visibleAlbums = sortedAlbums.slice(
     startIndex,
     startIndex + albumsPerPage
   );
 
+  /* =========================
+     HANDLERS
+  ========================= */
   function handleGenreChange(genre) {
     setSelectedGenre(genre);
     setCurrentPage(1);
@@ -55,9 +110,22 @@ export default function Shop() {
     setCurrentPage(1);
   }
 
+  /* =========================
+     UI
+  ========================= */
   return (
     <div className="page">
-      <h1>Shop Vinyl Records</h1>
+
+      {/* HEADER */}
+      <div className="shop-header">
+        <h1>Shop Vinyl Records</h1>
+
+        {totalPages > 1 && (
+          <span className="page-indicator-inline">
+            Page {currentPage} of {totalPages}
+          </span>
+        )}
+      </div>
 
       {/* GENRE FILTER */}
       <div className="genre-filter">
@@ -88,34 +156,112 @@ export default function Shop() {
         />
       </div>
 
-      {/* 🔥 GRID FIX */}
+      {/* 🔥 META BAR */}
+      <div className="shop-meta">
+        <span className="results-count">
+          {searchedAlbums.length} results
+        </span>
+
+        <div className="sort-box">
+          <label>Sort by:</label>
+
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name">Name (A → Z)</option>
+          </select>
+        </div>
+      </div>
+
+      {/* PRODUCTS */}
       <div className="products-grid">
         {visibleAlbums.map((album) => (
-          <AlbumCard key={album.id} album={album} />
+          <div key={album.id} style={{ position: "relative" }}>
+
+            {album.stock === 0 && (
+              <span className="out-of-stock-badge">
+                Out of Stock
+              </span>
+            )}
+
+            <AlbumCard album={album} />
+          </div>
         ))}
       </div>
 
-      {/* EMPTY STATE */}
+      {/* EMPTY */}
       {visibleAlbums.length === 0 && (
-        <p>No albums found</p>
+        <p className="empty-state">No albums found</p>
       )}
 
       {/* PAGINATION */}
       {totalPages > 1 && (
         <div className="pagination">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={
-                currentPage === i + 1
-                  ? "button--active"
-                  : "button--secondary"
-              }
-            >
-              {i + 1}
-            </button>
-          ))}
+
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(1)}
+            className="button--secondary"
+          >
+            « First
+          </button>
+
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+            className="button--secondary"
+          >
+            ‹ Prev
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter((page) => {
+              return (
+                page === 1 ||
+                page === totalPages ||
+                (page >= currentPage - 1 && page <= currentPage + 1)
+              );
+            })
+            .map((page, index, arr) => {
+              const prevPage = arr[index - 1];
+
+              return (
+                <span key={page}>
+                  {prevPage && page - prevPage > 1 && <span> ... </span>}
+
+                  <button
+                    onClick={() => setCurrentPage(page)}
+                    className={
+                      currentPage === page
+                        ? "button--active"
+                        : "button--secondary"
+                    }
+                  >
+                    {page}
+                  </button>
+                </span>
+              );
+            })}
+
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+            className="button--secondary"
+          >
+            Next ›
+          </button>
+
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(totalPages)}
+            className="button--secondary"
+          >
+            Last »
+          </button>
+
         </div>
       )}
     </div>
