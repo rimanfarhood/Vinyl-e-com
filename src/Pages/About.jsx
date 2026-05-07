@@ -1,211 +1,131 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
+  const navigate = useNavigate();
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
-    <main className="bg-dark text-light">
+    <div className="about-page">
 
-      {/* HERO */}
-      <section
-        className="d-flex align-items-center"
-        style={{
-          height: "65vh",
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1511379938547-c1f69419868d')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          position: "relative",
-        }}
-      >
-        {/* overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "rgba(0,0,0,0.65)",
-          }}
-        />
+      {/* ================= HERO ================= */}
+      <section className="about-hero">
 
-        {/* content */}
-        <div className="container position-relative">
-          <div className="">
-            <div className="">
-              <h1 className="display-3 fw-bold">
-                Vinyl, Curated Properly
-              </h1>
-              <p className="lead text-light mt-3">
-                Discover records that matter — from timeless classics to hidden gems.
-              </p>
-            </div>
-          </div>
+        <div className="about-hero-bg" />
+        <div className="about-overlay" />
+
+        <motion.div
+          className="about-hero-content"
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+        >
+          <h1>Experience Music the Way It Was Meant to Be</h1>
+
+         <p>
+          Discover hand-picked vinyl records — from timeless classics
+          to rare finds you won’t see anywhere else.
+         </p>
+
+          <button
+            className="about-btn"
+            onClick={() => navigate("/shop")}
+          >
+            Browse Collection
+          </button>
+        </motion.div>
+
+      </section>
+
+      {/* ================= STORY ================= */}
+      <section className="about-section">
+        <div className="about-grid">
+
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show">
+            <h2>Our Story</h2>
+            <p>
+              We built this platform for people who believe music deserves
+              more than a play button.
+            </p>
+            <p>
+              Every record is curated to deliver emotion,
+              quality, and authenticity.
+            </p>
+          </motion.div>
+
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show">
+            <img
+              src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f"
+              alt="vinyl"
+            />
+          </motion.div>
+
         </div>
       </section>
 
-      {/* ABOUT GRID */}
-      <section className="py-5" style={{display: "flex"}}>
-        <div className="container" style={{ maxWidth: "1200px" }}>
-          <div className="">
+      {/* ================= FEATURES ================= */}
+      <section className="about-section">
+        <div className="about-features">
 
-            <div className="">
-              <div className="p-4 h-100 bg-black rounded shadow">
-                <h3 className="mb-3">Who We Are</h3>
-                <p className="text-secondary">
-                  We are an online store focused on vinyl records, built to make
-                  discovering and buying music simple and enjoyable.
-                </p>
-              </div>
-            </div>
+          {[
+            {
+              title: "Curated Selection",
+              desc: "Only high-quality vinyl records."
+            },
+            {
+              title: "Premium Experience",
+              desc: "Clean, fast and intuitive UI."
+            },
+            {
+              title: "Trusted Quality",
+              desc: "Every album verified."
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className="about-card"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+            >
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </motion.div>
+          ))}
 
-            <div className="">
-              <div className="p-4 h-100 bg-black rounded shadow">
-                <h3 className="mb-3">Our Selection</h3>
-                <p className="text-secondary">
-                  From iconic albums to hidden gems, every record is chosen with
-                  intention — prioritizing quality, authenticity, and music that lasts.
-                </p>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="p-4 h-100 bg-black rounded shadow">
-                <h3 className="mb-3">The Experience</h3>
-                <p className="text-secondary">
-                  Clean, fast, and intuitive. Our platform is designed so you can
-                  focus on finding the right record, not navigating complexity.
-                </p>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="p-4 h-100 bg-black rounded shadow">
-                <h3 className="mb-3">Why Vinyl</h3>
-                <p className="text-secondary">
-                  Vinyl creates a physical connection to music — something digital
-                  formats cannot replicate.
-                </p>
-              </div>
-            </div>
-
-          </div>
         </div>
       </section>
 
-      {/* FINAL SECTION */}
-      <section className="py-5 border-top border-secondary" style={{display: "flex"}}>
-        <div className="container text-center" style={{ maxWidth: "1200px" }}>
-          <h2 className="fw-bold">Built for People Who Care About Music</h2>
-          <p className="text-secondary mt-3">
-            Whether you're starting your collection or expanding it, this is a place
-            where music comes first.
+      {/* ================= WHY ================= */}
+      <section className="about-why">
+        <motion.div initial="hidden" whileInView="show" variants={fadeUp}>
+          <h2>Why Vinyl?</h2>
+          <p>
+            Because music should be experienced, not skipped.
           </p>
-        </div>
+        </motion.div>
       </section>
 
-    </main>
+      {/* ================= CTA ================= */}
+      <section className="about-cta">
+        <motion.div initial="hidden" whileInView="show" variants={fadeUp}>
+          <h2>Start Your Collection Today</h2>
+
+          <button onClick={() => navigate("/shop")}>
+            Explore Now
+          </button>
+        </motion.div>
+      </section>
+
+    </div>
   );
 }
-
-// import React from "react";
-
-// export default function About() {
-//   return (
-//     <main className="bg-dark text-light">
-
-//       {/* HERO */}
-//       <section
-//         className="d-flex align-items-center"
-//         style={{
-//           height: "65vh",
-//           backgroundImage:
-//             "url('https://images.unsplash.com/photo-1511379938547-c1f69419868d')",
-//           backgroundSize: "cover",
-//           backgroundPosition: "center",
-//           position: "relative",
-//         }}
-//       >
-//         {/* overlay */}
-//         <div
-//           style={{
-//             position: "absolute",
-//             inset: 0,
-//             background: "rgba(0,0,0,0.65)",
-//           }}
-//         />
-
-//         {/* content */}
-//         <div className="container position-relative">
-//           <div className="row">
-//             <div className="col-lg-6">
-//               <h1 className="display-3 fw-bold">
-//                 Vinyl, Curated Properly
-//               </h1>
-//               <p className="lead text-light mt-3">
-//                 Discover records that matter — from timeless classics to hidden gems.
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* ABOUT GRID */}
-//       <section className="py-5">
-//         <div className="container" style={{ maxWidth: "1200px" }}>
-//           <div className="row g-5">
-
-//             <div className="col-md-6">
-//               <div className="p-4 h-100 bg-black rounded shadow">
-//                 <h3 className="mb-3">Who We Are</h3>
-//                 <p className="text-secondary">
-//                   We are an online store focused on vinyl records, built to make
-//                   discovering and buying music simple and enjoyable.
-//                 </p>
-//               </div>
-//             </div>
-
-//             <div className="col-md-6">
-//               <div className="p-4 h-100 bg-black rounded shadow">
-//                 <h3 className="mb-3">Our Selection</h3>
-//                 <p className="text-secondary">
-//                   From iconic albums to hidden gems, every record is chosen with
-//                   intention — prioritizing quality, authenticity, and music that lasts.
-//                 </p>
-//               </div>
-//             </div>
-
-//             <div className="col-md-6">
-//               <div className="p-4 h-100 bg-black rounded shadow">
-//                 <h3 className="mb-3">The Experience</h3>
-//                 <p className="text-secondary">
-//                   Clean, fast, and intuitive. Our platform is designed so you can
-//                   focus on finding the right record, not navigating complexity.
-//                 </p>
-//               </div>
-//             </div>
-
-//             <div className="col-md-6">
-//               <div className="p-4 h-100 bg-black rounded shadow">
-//                 <h3 className="mb-3">Why Vinyl</h3>
-//                 <p className="text-secondary">
-//                   Vinyl creates a physical connection to music — something digital
-//                   formats cannot replicate.
-//                 </p>
-//               </div>
-//             </div>
-
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* FINAL SECTION */}
-//       <section className="py-5 border-top border-secondary">
-//         <div className="container text-center" style={{ maxWidth: "1200px" }}>
-//           <h2 className="fw-bold">Built for People Who Care About Music</h2>
-//           <p className="text-secondary mt-3">
-//             Whether you're starting your collection or expanding it, this is a place
-//             where music comes first.
-//           </p>
-//         </div>
-//       </section>
-
-//     </main>
-//   );
-// }

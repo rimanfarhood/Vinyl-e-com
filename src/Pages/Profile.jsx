@@ -1,86 +1,107 @@
-import { useEffect, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
-
-import { auth } from "../firebase";
+import { useContext } from "react";
 import { FavoritesContext } from "../context/FavoritesContext";
 
 export default function Profile() {
-  const navigate = useNavigate();
-
   const { favorites } = useContext(FavoritesContext);
 
-  // Protect route
-  useEffect(() => {
-    if (!auth.currentUser) {
-      navigate("/login");
-    }
-  }, [navigate]);
-
-  if (!auth.currentUser) return null;
-
-  const displayName =
-    auth.currentUser.displayName ||
-    auth.currentUser.email?.split("@")[0] ||
-    "User";
+  const user = {
+    name: "admin",
+    email: "admin@sypchain.gov",
+  };
 
   return (
-    <div className="page">
-      <h1>My Profile</h1>
+    <div className="profile-page">
 
-      {/* User info */}
-      <section className="profile-section">
-        <h2>Account Information</h2>
+      {/* =========================
+         HEADER (AVATAR + USER)
+      ========================= */}
+      <div className="profile-header">
+        <div className="avatar">
+          {user.name.charAt(0).toUpperCase()}
+        </div>
 
-        <p>
-          <strong>Name:</strong> {displayName}
-        </p>
+        <div>
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+          <span className="member-badge">Member</span>
+        </div>
+      </div>
 
-        <p>
-          <strong>Email:</strong> {auth.currentUser.email}
-        </p>
-      </section>
+      {/* =========================
+         ACCOUNT CARD
+      ========================= */}
+      <div className="profile-card">
+        <h3>Account Information</h3>
 
-      {/* Favorites */}
-      <section className="profile-section">
-        <h2>Favorites</h2>
+        <div className="profile-info">
+          <p><span>Name:</span> {user.name}</p>
+          <p><span>Email:</span> {user.email}</p>
+        </div>
+      </div>
 
-        {favorites.length === 0 ? (
-          <p>No favorites added yet.</p>
-        ) : (
-          <div className="profile-favorites">
-            {favorites.map((album) => (
-              <Link
-                key={album.id}
-                to={`/product/${album.id}`}
-                className="profile-favorite-item"
-              >
-                <img
-                  src={album.imageUrl}
-                  alt={album.title}
-                  width="100"
-                  loading="lazy"
-                />
+      {/* =========================
+         DASHBOARD GRID
+      ========================= */}
+      <div className="profile-grid">
 
-                <p>{album.title}</p>
-              </Link>
-            ))}
+        {/* FAVORITES */}
+        <div className="profile-box">
+          <h3>Favorites ❤️</h3>
+
+          {favorites.length === 0 ? (
+            <p>No favorites yet</p>
+          ) : (
+            <>
+              {/* 🔥 PREVIEW IMAGES */}
+              <div className="favorites-preview">
+                {favorites.slice(0, 3).map((album) => (
+                  <img
+                    key={album.id}
+                    src={album.imageUrl}
+                    alt={album.title}
+                  />
+                ))}
+              </div>
+
+              {/* COUNT */}
+              <p>{favorites.length} items</p>
+
+              <button className="button--secondary">
+                View all
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* ORDERS */}
+        <div className="profile-box">
+          <h3>Orders 📦</h3>
+
+          <div className="profile-stat">
+            <strong>0</strong>
+            <span>Total Orders</span>
           </div>
-        )}
-      </section>
 
-      {/* Orders placeholder */}
-      <section className="profile-section">
-        <h2>Orders</h2>
+          <button className="button--secondary">
+            View Orders
+          </button>
+        </div>
 
-        <p>No orders yet.</p>
-      </section>
+        {/* RECEIPTS */}
+        <div className="profile-box">
+          <h3>Receipts 🧾</h3>
 
-      {/* Receipts placeholder */}
-      <section className="profile-section">
-        <h2>Receipts</h2>
+          <div className="profile-stat">
+            <strong>0</strong>
+            <span>Available Receipts</span>
+          </div>
 
-        <p>No receipts available.</p>
-      </section>
+          <button className="button--secondary">
+            View Receipts
+          </button>
+        </div>
+
+      </div>
     </div>
   );
 }
