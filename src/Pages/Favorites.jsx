@@ -7,10 +7,13 @@ export default function Favorites() {
 
   return (
     <div className="page">
-      <h1>My Favorites ❤️</h1>
+      <h1 className="page-title">My Favorites ❤️</h1>
 
       {favorites.length === 0 ? (
-        <p>No favorites yet...</p>
+        <div className="empty-state">
+          <p>No favorites yet...</p>
+          <span>Start adding albums you love 🎵</span>
+        </div>
       ) : (
         <div className="album-grid">
           {favorites.map((album) => (

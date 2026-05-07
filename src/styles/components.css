@@ -70,6 +70,13 @@
   padding: 7px 8px;
 }
 
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
 .genre-filter {
   display: flex;
   justify-content: center;
@@ -474,9 +481,6 @@
 }
 
 main section {
-  background-color: var(--color-bg-soft);
-  border: 1px solid var(--color-border);
-  padding: 16px;
   margin-bottom: 20px;
   color: var(--color-text);
 }
@@ -657,7 +661,7 @@ main section article {
   position: relative;
 }
 
-.album-grid {
+.products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
@@ -680,4 +684,22 @@ main section article {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--color-text-muted);
+}
+
+.empty-state span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
 }
