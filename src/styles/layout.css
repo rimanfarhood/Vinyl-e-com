@@ -129,6 +129,8 @@ footer {
 .product-carousel {
   position: relative;
   padding: 20px;
+  height: auto;
+  
 }
 
 .product-carousel h2 {
@@ -145,8 +147,9 @@ footer {
   display: flex;
   justify-content: space-between;
   pointer-events: none;
-  z-index: 3;
+  z-index: 10;
 }
+
 
 /* BUTTON STYLE */
 .carousel-controls button {
@@ -183,6 +186,8 @@ footer {
   scroll-behavior: smooth;
   padding-bottom: 10px;
   scroll-snap-type: x mandatory;
+  min-height: 750px;
+
 }
 
 /* HIDE SCROLLBAR */

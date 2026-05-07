@@ -201,7 +201,9 @@
 .expanded-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 30px;
+  align-items: center;
+  height: 100%;
 }
 
 /* LEFT SIDE */
