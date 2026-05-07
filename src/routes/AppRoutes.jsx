@@ -31,7 +31,6 @@ export default function AppRoutes() {
           <Route path="/confirmation" element={<OrderConfirmation />} />
           <Route path="/about" element={<About />} />
           <Route path="/search" element={<SearchResults />} />
-          <Route path="/success" element={<Success />} />
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
