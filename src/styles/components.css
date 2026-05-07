@@ -1,3 +1,6 @@
+/* =========================
+   ALBUM CARD
+========================= */
 .album-card {
   border: 1px solid var(--color-border-light);
   padding: 10px;
@@ -78,6 +81,9 @@
   padding: 20px;
 }
 
+/* =========================
+   GENRES & SEARCH
+========================= */
 .genre-filter {
   display: flex;
   justify-content: center;
@@ -215,6 +221,10 @@
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+/* =========================
+   Cart Modal & Product Detail
+========================= */
 
 .header-cart-button {
   margin-left: 16px;
@@ -362,6 +372,10 @@
   padding: 8px 12px;
 }
 
+/* =========================
+   Shipping Form
+========================= */
+
 .shipping-form {
   margin-top: 20px;
   padding-top: 16px;
@@ -429,6 +443,10 @@
   padding: 6px 10px;
 }
 
+/* =========================
+   Product Detail
+========================= */
+
 .product-detail {
   display: grid;
   grid-template-columns: minmax(240px, 420px) minmax(240px, 1fr);
@@ -467,6 +485,10 @@
   margin-right: 6px;
 }
 
+/* =========================
+   Cart Toast
+========================= */
+
 .cart-toast {
   position: fixed;
   bottom: 20px;
@@ -492,6 +514,9 @@
   }
 }
 
+/* =========================
+   main content in About 
+========================= */
 main section {
   margin-bottom: 20px;
   color: var(--color-text);
@@ -509,6 +534,9 @@ main section article {
   margin-bottom: 12px;
 }
 
+/* =========================
+   Add to Cart Button 
+========================= */
 .add-to-cart-btn {
   font-size: 1.2rem;
   padding: 1rem 2.5rem;
@@ -517,6 +545,9 @@ main section article {
   font-weight: 600;
 }
 
+/* =========================
+   Responsive Adjustments 
+========================= */
 @media (max-width: 700px) {
   .search-controls {
     gap: 10px;
@@ -554,7 +585,9 @@ main section article {
 
 }
 
-/* ===== Login / Auth ===== */
+/* =========================
+   Login & Register Forms 
+========================= */
 
 .auth-container {
   max-width: 420px;
@@ -640,6 +673,10 @@ main section article {
   cursor: pointer;
   user-select: none;
 }
+
+/* =========================
+   Favorites Icon & Link 
+========================= */
 
 .favorite-btn {
   position: absolute;

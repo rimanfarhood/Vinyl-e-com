@@ -11,7 +11,6 @@ import ProductPage from "../Pages/ProductPage";
 import Checkout from "../Pages/Checkout";
 import OrderConfirmation from "../Pages/OrderConfirmation";
 import About from "../Pages/About";
-import SearchResults from "../Pages/SearchResults";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -30,7 +29,6 @@ export default function AppRoutes() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/confirmation" element={<OrderConfirmation />} />
           <Route path="/about" element={<About />} />
-          <Route path="/search" element={<SearchResults />} />
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
