@@ -136,8 +136,8 @@ footer {
 .carousel-controls {
   position: absolute;
   top: 50%;
-  left: -20px;   
-  width: calc(100% + 40px);
+  left: -30px;
+  width: calc(100% + 60px);
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
@@ -164,15 +164,12 @@ footer {
   transform: scale(1.1);
 }
 
-/* POSITION FIX */
-.carousel-controls button:first-child {
-  margin-left: 0;
-}
-.carousel-controls button:last-child {
-  margin-right: 0;
-}
-.carousel-controls button:last-child {
-  margin-right: 10px;
+/* DISABLED */
+.carousel-controls button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* TRACK */
@@ -182,7 +179,6 @@ footer {
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: 10px;
-
   scroll-snap-type: x mandatory;
 }
 
@@ -244,5 +240,10 @@ footer {
 
   .logo-img {
     height: 45px;
+  }
+
+  .carousel-controls {
+    left: -10px;
+    width: calc(100% + 20px);
   }
 }

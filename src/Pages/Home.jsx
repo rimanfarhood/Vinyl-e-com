@@ -4,6 +4,9 @@ import AlbumCard from "../components/AlbumCard";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [isAtStart, setIsAtStart] = useState(true);
+  const [isAtEnd, setIsAtEnd] = useState(false);
+
   const trackRef = useRef(null);
   const intervalRef = useRef(null);
 
@@ -11,30 +14,47 @@ export default function Home() {
     getProducts().then(setProducts);
   }, []);
 
+  /* 🔥 TRACK POSITION DETECTION */
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const handleScroll = () => {
+      setIsAtStart(track.scrollLeft <= 0);
+
+      setIsAtEnd(
+        track.scrollLeft + track.clientWidth >= track.scrollWidth - 5
+      );
+    };
+
+    handleScroll(); // 🔥 initial check
+
+    track.addEventListener("scroll", handleScroll);
+    return () => track.removeEventListener("scroll", handleScroll);
+  }, []);
+
   /* 🔥 AUTO SCROLL + LOOP */
   useEffect(() => {
-  const track = trackRef.current;
-  if (!track) return;
+    const track = trackRef.current;
+    if (!track) return;
 
-  const scrollStep = () => {
-    const isEnd =
-      track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+    const scrollStep = () => {
+      const isEnd =
+        track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
 
-    if (isEnd) {
-      track.scrollTo({ left: 0, behavior: "smooth" });
-    } else {
-      track.scrollBy({ left: 250, behavior: "smooth" });
-    }
-  };
+      if (isEnd) {
+        track.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        track.scrollBy({ left: 250, behavior: "smooth" });
+      }
+    };
 
-  
-  setTimeout(scrollStep, 500);
+    setTimeout(scrollStep, 500);
 
-  
-  intervalRef.current = setInterval(scrollStep, 3000);
+    intervalRef.current = setInterval(scrollStep, 3000);
 
-  return () => clearInterval(intervalRef.current);
-}, []);
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   /* ⏸️ PAUSE ON HOVER */
   const handleMouseEnter = () => {
@@ -60,11 +80,15 @@ export default function Home() {
 
   /* ⬅️➡️ BUTTONS */
   const scrollLeft = () => {
-    trackRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    if (trackRef.current) {
+      trackRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
   };
 
   const scrollRight = () => {
-    trackRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    if (trackRef.current) {
+      trackRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
   };
 
   return (
@@ -73,8 +97,13 @@ export default function Home() {
 
       {/* 🔥 CONTROLS */}
       <div className="carousel-controls">
-        <button onClick={scrollLeft}>←</button>
-        <button onClick={scrollRight}>→</button>
+        <button onClick={scrollLeft} disabled={isAtStart}>
+          ←
+        </button>
+
+        <button onClick={scrollRight} disabled={isAtEnd}>
+          →
+        </button>
       </div>
 
       {/* 🔥 TRACK */}
