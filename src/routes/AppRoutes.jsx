@@ -12,7 +12,6 @@ import Checkout from "../Pages/Checkout";
 import OrderConfirmation from "../Pages/OrderConfirmation";
 import About from "../Pages/About";
 import SearchResults from "../Pages/SearchResults";
-import Success from "../Pages/Success";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
