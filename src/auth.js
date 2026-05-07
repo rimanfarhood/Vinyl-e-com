@@ -3,11 +3,16 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 // Register
-export const register = (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+export const register = async (email, password, name) => {
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  if (name) {
+    await updateProfile(userCredential.user, { displayName: name });
+  }
+  return userCredential;
 };
 
 // Login

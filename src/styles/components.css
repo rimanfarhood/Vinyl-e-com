@@ -797,6 +797,17 @@
   color: var(--color-text-muted);
 }
 
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.product-info span {
+  font-weight: 600;
+  margin-right: 6px;
+}
+
 .cart-toast {
   position: fixed;
   bottom: 20px;
@@ -837,6 +848,14 @@ main section article {
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 12px;
   margin-bottom: 12px;
+}
+
+.add-to-cart-btn {
+  font-size: 1.2rem;
+  padding: 1rem 2.5rem;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
 @media (max-width: 700px) {

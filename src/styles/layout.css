@@ -250,3 +250,42 @@ footer {
     width: calc(100% + 20px);
   }
 }
+
+/* =========================
+   Hero SECTION
+========================= */
+
+.hero {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("/Images/HeroImage.webp") no-repeat;
+
+  background-size: cover;
+  background-position: center;
+  color: white;
+  margin-bottom: 5rem; /* increased spacing */
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 3rem; /* increased spacing */
+  opacity: 0.9;
+}
+
+.hero-button {
+  font-size: 1.1rem;        /* bigger text */
+  padding: 1rem 2.2rem;     /* bigger clickable area */
+  border-radius: 10px;      /* slightly softer look */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  text-decoration: none;
+  border: 2px solid white;
+}

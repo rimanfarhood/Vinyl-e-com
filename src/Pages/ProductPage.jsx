@@ -37,7 +37,7 @@ export default function ProductPage() {
   const disabled = isOutOfStock || isAtLimit;
 
   return (
-    <div>
+    <>
       <Link to="/shop">Back to shop</Link>
 
       <article className="product-detail">
@@ -49,19 +49,24 @@ export default function ProductPage() {
 
         <div>
           <h1>{album.title}</h1>
-          <p>{album.artist}</p>
-          <p>{album.genre}</p>
-          <p>{album.year}</p>
-          <p>{album.condition}</p>
-          <p>{album.stock} in stock</p>
-          <p className="product-detail__description">{album.description}</p>
-          <p>{album.price} kr</p>
 
-          <button type="button" disabled={disabled} onClick={() => addToCart(album)}>
+          <div className="product-info">
+            <p><span>Artist:</span> {album.artist}</p>
+            <p><span>Genre:</span> {album.genre}</p>
+            <p><span>Year:</span> {album.year}</p>
+            <p><span>Condition:</span> {album.condition}</p>
+            <p><span>Stock:</span> {album.stock} in stock</p>
+            <p className="product-detail__description"><span>Description:</span> {album.description}</p>
+            <p><span>Price:</span> {album.price} kr</p>
+          </div>
+        
+          <br />
+
+          <button type="button" className="add-to-cart-btn" disabled={disabled} onClick={() => addToCart(album)}>
             {isOutOfStock ? "Out of stock" : isAtLimit ? "Max in cart" : "Add to Cart"}
           </button>
         </div>
       </article>
-    </div>
+    </>
   );
 }
