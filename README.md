@@ -1,12 +1,13 @@
-# Vinyl-e-com
+# Vinyl-e-com / Shope page
 
-Added Favorites feature:
+Added feature:
 
-- Add/remove items using ❤️ button
-- Favorites counter in header
-- Favorites page to view saved items
+• Pagination (First / Prev / Next / Last)
+• Sorting (price + stock priority)
+• Show results
+• Show pages
+• UI improvements
 
-Ready for review 
 
 Best Regards
 
