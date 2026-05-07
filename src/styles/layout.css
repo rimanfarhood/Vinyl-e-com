@@ -1,20 +1,4 @@
 /* =========================
-   BASE
-========================= */
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-/* =========================
    HEADER
 ========================= */
 header {
@@ -92,17 +76,6 @@ footer {
 /* =========================
    LOGO
 ========================= */
-.logo a {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 26px;
-  letter-spacing: 2px;
-  color: white;
-}
-
-.logo a:hover {
-  text-shadow: 0 0 8px white;
-}
-
 .logo-img {
   height: 60px;
   object-fit: contain;

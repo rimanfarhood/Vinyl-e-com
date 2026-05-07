@@ -7,6 +7,7 @@
   background-color: var(--color-bg-soft);
   color: var(--color-text);
   box-shadow: var(--shadow-soft);
+  position: relative;
 }
 
 .album-card__link {
@@ -622,7 +623,7 @@ main section article {
 
 .password-field input {
   width: 100%;
-  padding: 12px 45px 12px 12px; /* مساحة لزر show */
+  padding: 12px 45px 12px 12px;
   border-radius: 8px;
   border: none;
   background: #222;
@@ -676,10 +677,6 @@ main section article {
   }
 }
 
-.album-card {
-  position: relative;
-}
-
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -703,22 +700,4 @@ main section article {
   display: flex;
   align-items: center;
   gap: 5px;
-}
-
-.empty-state {
-  text-align: center;
-  margin-top: 40px;
-  color: var(--color-text-muted);
-}
-
-.empty-state span {
-  display: block;
-  margin-top: 10px;
-  font-size: 14px;
-  opacity: 0.7;
-}
-
-.page-title {
-  text-align: center;
-  margin-bottom: 30px;
 }

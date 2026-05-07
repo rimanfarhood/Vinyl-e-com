@@ -10,17 +10,13 @@ import Shop from "../Pages/Shop";
 import ProductPage from "../Pages/ProductPage";
 import Checkout from "../Pages/Checkout";
 import OrderConfirmation from "../Pages/OrderConfirmation";
-import Cart from "../Pages/Cart";
 import About from "../Pages/About";
-import Contact from "../Pages/Contact";
 import SearchResults from "../Pages/SearchResults";
 import Success from "../Pages/Success";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../Pages/Profile";
-
-
 
 export default function AppRoutes() {
   return (
@@ -34,9 +30,7 @@ export default function AppRoutes() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/confirmation" element={<OrderConfirmation />} />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/success" element={<Success />} />
           

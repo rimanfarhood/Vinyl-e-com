@@ -52,11 +52,9 @@ function Header() {
   return (
     <header>
       {/* Logo */}
-      <h1 className="logo">
-        <Link to="/">
-          <img src={logo} alt="Vinyllo" className="logo-img" />
-        </Link>
-      </h1>
+      <Link to="/">
+        <img src={logo} alt="Vinyllo" className="logo-img" />
+      </Link>
 
       <nav>
         {/* Shop */}
