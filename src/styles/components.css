@@ -125,7 +125,6 @@
 /* ===================== */
 
 .record-expanded {
-  width: 300px;
   margin-top: 20px;
 
   background: #f4f1ea;
@@ -327,10 +326,6 @@
   .card-container {
     width: 240px;
     height: 240px;
-  }
-
-  .record-expanded {
-    width: 240px;
   }
 
   .expanded-content {

@@ -3,8 +3,6 @@
 /* ===================== */
 
 .card-container {
-  width: 300px;
-  height: 300px;
   perspective: 1000px;
   perspective-origin: center;
   position: relative;
@@ -176,6 +174,7 @@
 
 .record-expanded {
   width: 300px;
+  box-sizing: border-box;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
