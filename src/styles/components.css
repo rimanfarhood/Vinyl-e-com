@@ -1251,6 +1251,10 @@ main section article {
   box-sizing: border-box;
 }
 
+.profile-favorites-grid .record-expanded.show {
+  overflow-y: auto;
+}
+
 .profile-favorites-grid .expanded-left {
   display: none;
 }
@@ -1422,6 +1426,22 @@ main section article {
   display: none;
 }
 
+.profile-favorites-grid .record-expanded.show::-webkit-scrollbar,
+.fav-carousel__item .record-expanded.show::-webkit-scrollbar {
+  width: 4px;
+}
+
+.profile-favorites-grid .record-expanded.show::-webkit-scrollbar-track,
+.fav-carousel__item .record-expanded.show::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.profile-favorites-grid .record-expanded.show::-webkit-scrollbar-thumb,
+.fav-carousel__item .record-expanded.show::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
 .fav-carousel__item {
   width: 185px;
   flex-shrink: 0;
@@ -1447,6 +1467,10 @@ main section article {
 .fav-carousel__item .record-expanded {
   width: 100%;
   box-sizing: border-box;
+}
+
+.fav-carousel__item .record-expanded.show {
+  overflow-y: auto;
 }
 
 .fav-carousel__item .expanded-left {

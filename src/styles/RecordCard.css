@@ -200,6 +200,22 @@
   opacity: 1;
   margin-top: 20px;
   padding: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+}
+
+.record-expanded.show::-webkit-scrollbar {
+  width: 4px;
+}
+
+.record-expanded.show::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.record-expanded.show::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
 }
 
 /* LAYOUT */
