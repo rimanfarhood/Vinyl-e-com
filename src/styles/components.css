@@ -260,15 +260,6 @@
   transform: scale(1.2);
 }
 
-.favorite-btn.active {
-  animation: pulse 0.3s ease;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.4); }
-  100% { transform: scale(1); }
-}
 
 /* ===================== */
 /* SEARCH / FILTER */
@@ -1223,6 +1214,8 @@ main section article {
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
 .profile-favorites-grid .record-wrapper {
