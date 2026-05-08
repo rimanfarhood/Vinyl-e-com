@@ -1255,6 +1255,48 @@ main section article {
   overflow-y: auto;
 }
 
+.profile-favorites-grid .back h3,
+.fav-carousel__item .back h3 {
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+}
+
+.profile-favorites-grid .back .track,
+.fav-carousel__item .back .track {
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.profile-favorites-grid .back .time,
+.fav-carousel__item .back .time {
+  font-size: 9px;
+}
+
+.profile-favorites-grid .back,
+.fav-carousel__item .back {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+}
+
+.profile-favorites-grid .back::-webkit-scrollbar,
+.fav-carousel__item .back::-webkit-scrollbar {
+  width: 4px;
+}
+
+.profile-favorites-grid .back::-webkit-scrollbar-track,
+.fav-carousel__item .back::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.profile-favorites-grid .back::-webkit-scrollbar-thumb,
+.fav-carousel__item .back::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+
 .profile-favorites-grid .expanded-left {
   display: none;
 }

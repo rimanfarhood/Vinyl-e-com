@@ -6,6 +6,7 @@ import {
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 
 // Pages
 import Home from "../pages/Home";
@@ -28,6 +29,7 @@ import Favorites from "../pages/Favorites";
 export default function AppRoutes() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
 
       <main>

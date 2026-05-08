@@ -95,6 +95,9 @@ function Header() {
           </>
         )}
 
+        {/* About */}
+        <Link to="/about">About us</Link>
+
         {/* Cart */}
         <button
           className="header-cart-button button--secondary"
