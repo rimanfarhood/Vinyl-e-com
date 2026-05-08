@@ -1434,11 +1434,10 @@ main section article {
 
 .fav-carousel:hover .fav-carousel__controls {
   opacity: 1;
-  pointer-events: auto;
 }
 
 .fav-carousel__controls button {
-  pointer-events: inherit;
+  pointer-events: none;
   background: none;
   border: none;
   box-shadow: none;
@@ -1451,6 +1450,10 @@ main section article {
   transition: color 0.2s ease;
   height: 100%;
   width: 48px;
+}
+
+.fav-carousel:hover .fav-carousel__controls button {
+  pointer-events: auto;
 }
 
 .fav-carousel__controls button:hover {
