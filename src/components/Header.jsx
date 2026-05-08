@@ -17,6 +17,7 @@ import shopIcon from "/icons/shoppingCart.svg";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
@@ -49,32 +50,28 @@ function Header() {
     user?.email?.split("@")[0] ||
     "User";
 
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <header>
       {/* Logo */}
       <h1 className="logo">
-        <Link to="/">
+        <Link to="/" onClick={closeMenu}>
           <img src={logo} alt="Vinyllo" className="logo-img" />
         </Link>
       </h1>
 
-      <nav>
-        {/* Shop */}
+      {/* Desktop nav */}
+      <nav className="nav-desktop">
         <Link to="/shop">Shop</Link>
 
-        {/* Favorites */}
         <Link to="/favorites" className="favorites-link">
-          <span
-            className={`favorites-icon ${
-              favorites.length > 0 ? "active" : ""
-            }`}
-          >
+          <span className={`favorites-icon ${favorites.length > 0 ? "active" : ""}`}>
             <FaHeart />
           </span>
           ({favorites.length})
         </Link>
 
-        {/* Auth section */}
         {!user ? (
           <Link to="/login">
             <img src={userIcon} alt="Login" className="icon" />
@@ -82,23 +79,16 @@ function Header() {
           </Link>
         ) : (
           <>
-            {/* Profile link */}
             <Link to="/profile" className="user-info">
               <img src={userIcon} alt="User" className="icon" />
               <span>{displayName}</span>
             </Link>
-
-            {/* Logout */}
-            <button type="button" onClick={handleLogout}>
-              Logout
-            </button>
+            <button type="button" onClick={handleLogout}>Logout</button>
           </>
         )}
 
-        {/* About */}
         <Link to="/about">About us</Link>
 
-        {/* Cart */}
         <button
           className="header-cart-button button--secondary"
           type="button"
@@ -109,10 +99,61 @@ function Header() {
         </button>
       </nav>
 
-      {/* Cart modal */}
-      {isCartOpen && (
-        <CartModal onClose={() => setIsCartOpen(false)} />
+      {/* Mobile controls */}
+      <div className="nav-mobile-controls">
+        <Link to="/favorites" className="favorites-link" onClick={closeMenu}>
+          <span className={`favorites-icon ${favorites.length > 0 ? "active" : ""}`}>
+            <FaHeart />
+          </span>
+          ({favorites.length})
+        </Link>
+
+        <button
+          className="header-cart-button button--secondary"
+          type="button"
+          onClick={() => { setIsCartOpen(true); closeMenu(); }}
+        >
+          <img src={shopIcon} alt="Cart" className="icon" />
+          Cart ({cartItemCount})
+        </button>
+
+        <button
+          className="hamburger-btn"
+          type="button"
+          aria-label="Toggle menu"
+          onClick={() => setIsMenuOpen((o) => !o)}
+        >
+          <span className={`hamburger-icon ${isMenuOpen ? "open" : ""}`}>
+            <span /><span /><span />
+          </span>
+        </button>
+      </div>
+
+      {/* Mobile dropdown menu */}
+      {isMenuOpen && (
+        <nav className="nav-mobile-menu">
+          <Link to="/shop" onClick={closeMenu}>Shop</Link>
+          <Link to="/about" onClick={closeMenu}>About us</Link>
+          {!user ? (
+            <Link to="/login" onClick={closeMenu}>
+              <img src={userIcon} alt="Login" className="icon" />
+              Login
+            </Link>
+          ) : (
+            <>
+              <Link to="/profile" className="user-info" onClick={closeMenu}>
+                <img src={userIcon} alt="User" className="icon" />
+                <span>{displayName}</span>
+              </Link>
+              <button type="button" onClick={() => { handleLogout(); closeMenu(); }}>
+                Logout
+              </button>
+            </>
+          )}
+        </nav>
       )}
+
+      {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
     </header>
   );
 }
