@@ -1145,12 +1145,17 @@ main section article {
   align-items: start;
 }
 
+.profile-right {
+  min-width: 0;
+}
+
 .profile-card {
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   margin-bottom: 16px;
+  overflow: visible;
 }
 
 .profile-card h2 {
@@ -1215,9 +1220,98 @@ main section article {
 }
 
 .profile-favorites-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.profile-favorites-grid .record-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 185px;
+}
+
+.profile-favorites-grid .card-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.profile-favorites-grid .card-container .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-favorites-grid .record-expanded {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-favorites-grid .expanded-left {
+  display: none;
+}
+
+.profile-favorites-grid .expanded-content {
+  gap: 10px;
+  min-width: 0;
+}
+
+.profile-favorites-grid .expanded-right {
+  width: 100%;
+  min-width: 0;
+}
+
+.profile-favorites-grid .expanded-right h2 {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.profile-favorites-grid .meta {
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.profile-favorites-grid .description {
+  font-size: 11px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.profile-favorites-grid .bottom-row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.profile-favorites-grid .price {
+  font-size: 15px;
+}
+
+.profile-favorites-grid .buy-btn {
+  width: 100%;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.profile-favorites-grid .stock {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.profile-favorites-grid .product-link {
+  font-size: 12px;
+  margin-top: 6px;
 }
 
 .profile-album {
@@ -1259,14 +1353,161 @@ main section article {
   text-overflow: ellipsis;
 }
 
-@media (max-width: 1024px) {
-  .profile-favorites-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 700px) {
   .profile-layout {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===================== */
+/* FAVORITES CAROUSEL    */
+/* ===================== */
+
+.fav-carousel {
+  position: relative;
+}
+
+.fav-carousel__controls {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.fav-carousel:hover .fav-carousel__controls {
+  opacity: 1;
+}
+
+.fav-carousel__controls button {
+  pointer-events: all;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 92px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  height: 100%;
+  width: 48px;
+}
+
+.fav-carousel__controls button:hover {
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.fav-carousel__track {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.fav-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.fav-carousel__item {
+  width: 185px;
+  flex-shrink: 0;
+}
+
+/* Square card-container using padding-bottom trick */
+.fav-carousel__item .card-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.fav-carousel__item .card-container .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Compact expanded panel */
+.fav-carousel__item .record-expanded {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fav-carousel__item .expanded-left {
+  display: none;
+}
+
+.fav-carousel__item .expanded-content {
+  gap: 10px;
+  min-width: 0;
+}
+
+.fav-carousel__item .expanded-right {
+  width: 100%;
+  min-width: 0;
+}
+
+.fav-carousel__item .expanded-right h2 {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.fav-carousel__item .meta {
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.fav-carousel__item .description {
+  font-size: 11px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fav-carousel__item .bottom-row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.fav-carousel__item .price {
+  font-size: 15px;
+}
+
+.fav-carousel__item .buy-btn {
+  width: 100%;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.fav-carousel__item .stock {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.fav-carousel__item .product-link {
+  font-size: 12px;
+  margin-top: 6px;
 }

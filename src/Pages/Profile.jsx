@@ -1,13 +1,24 @@
-import { useEffect, useContext, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useContext, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { FavoritesContext } from "../context/FavoritesContext";
+import FavoritesCarousel from "../components/FavoritesCarousel";
+import AlbumCard from "../components/AlbumCard";
+
+const CARD_MIN_WIDTH = 185;
+const CARD_GAP = 20;
 
 export default function Profile() {
   const navigate = useNavigate();
   const { favorites } = useContext(FavoritesContext);
   const [favoriteAlbums, setFavoriteAlbums] = useState([]);
+  const [flippedIds, setFlippedIds] = useState({});
+  const [columnsPerRow, setColumnsPerRow] = useState(4);
+  const favCardRef = useRef(null);
+
+  const toggleFlip = (id) =>
+    setFlippedIds((prev) => ({ ...prev, [id]: !prev[id] }));
 
   useEffect(() => {
     if (!auth.currentUser) navigate("/login");
@@ -34,6 +45,19 @@ export default function Profile() {
       setFavoriteAlbums([]);
     }
   }, [favorites]);
+
+  useEffect(() => {
+    const el = favCardRef.current;
+    if (!el) return;
+    const measure = () => {
+      const w = el.clientWidth - 48; // subtract 1.5rem padding on each side
+      setColumnsPerRow(Math.max(1, Math.floor((w + CARD_GAP) / (CARD_MIN_WIDTH + CARD_GAP))));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   if (!auth.currentUser) return null;
 
@@ -73,36 +97,26 @@ export default function Profile() {
       {/* RIGHT COLUMN */}
       <section className="profile-right">
 
-        <div className="profile-card profile-card--full">
+        <div className="profile-card profile-card--full" ref={favCardRef}>
           <div className="profile-card__header">
             <h2>Favorites</h2>
-            {favoriteAlbums.length > 0 && (
-              <Link to="/favorites" className="profile-view-all">View all</Link>
-            )}
           </div>
 
           {favoriteAlbums.length === 0 ? (
             <p className="profile-empty">No favorites added yet.</p>
-          ) : (
+          ) : favoriteAlbums.length <= columnsPerRow ? (
             <div className="profile-favorites-grid">
-              {favoriteAlbums.slice(0, 4).map((album) => {
-                const slug = album.title
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-")
-                  .replace(/^-|-$/g, "");
-                return (
-                  <Link
-                    key={album.id}
-                    to={`/product/${album.id}-${slug}`}
-                    className="profile-album"
-                  >
-                    <img src={album.imageUrl} alt={album.title} />
-                    <span className="profile-album__title">{album.title}</span>
-                    <span className="profile-album__artist">{album.artist}</span>
-                  </Link>
-                );
-              })}
+              {favoriteAlbums.map((album) => (
+                <AlbumCard
+                  key={album.id}
+                  album={album}
+                  isFlipped={!!flippedIds[album.id]}
+                  onFlip={toggleFlip}
+                />
+              ))}
             </div>
+          ) : (
+            <FavoritesCarousel albums={favoriteAlbums} />
           )}
         </div>
 
