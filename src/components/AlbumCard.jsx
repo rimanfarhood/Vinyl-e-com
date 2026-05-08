@@ -28,6 +28,7 @@ export default function AlbumCard({ album, isFlipped: isFlippedProp, onFlip }) {
   const [localFlipped, setLocalFlipped] = useState(false);
   const flipped = isFlippedProp !== undefined ? isFlippedProp : localFlipped;
   const setFlipped = (val) => {
+    setTilt({ x: 0, y: 0 });
     if (onFlip) onFlip(album.id);
     else setLocalFlipped(val);
   };
@@ -46,8 +47,9 @@ export default function AlbumCard({ album, isFlipped: isFlippedProp, onFlip }) {
     }
   }, [flipped, album.tracks]);
 
-  // 🖱 Tilt
+  // 🖱 Tilt — disabled while flipped to avoid transform conflicts
   const handleMouseMove = (e) => {
+    if (flipped) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -84,11 +86,9 @@ export default function AlbumCard({ album, isFlipped: isFlippedProp, onFlip }) {
         <div
           className={`card ${flipped ? "flipped" : ""}`}
           style={{
-            transform: `
-              rotateY(${flipped ? 180 : 0}deg)
-              rotateX(${tilt.x}deg)
-              rotateY(${tilt.y}deg)
-            `
+            transform: flipped
+              ? "rotateY(180deg)"
+              : `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`
           }}
         >
           {/* FRONT */}
