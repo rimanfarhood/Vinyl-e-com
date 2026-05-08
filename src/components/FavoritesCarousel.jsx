@@ -1,17 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import AlbumCard from "./AlbumCard";
 
 const SCROLL_SPEED = 50;
 
-export default function FavoritesCarousel({ albums }) {
+export default function FavoritesCarousel({ albums, flippedIds, onFlip }) {
   const trackRef = useRef(null);
   const rafRef = useRef(null);
   const lastTimeRef = useRef(null);
   const pausedRef = useRef(false);
-  const [flippedIds, setFlippedIds] = useState({});
-
-  const toggleFlip = (id) =>
-    setFlippedIds((prev) => ({ ...prev, [id]: !prev[id] }));
 
   const items = [...albums, ...albums, ...albums];
 
@@ -90,7 +86,7 @@ export default function FavoritesCarousel({ albums }) {
             <AlbumCard
               album={album}
               isFlipped={!!flippedIds[album.id]}
-              onFlip={toggleFlip}
+              onFlip={onFlip}
             />
           </div>
         ))}

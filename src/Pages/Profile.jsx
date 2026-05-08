@@ -116,7 +116,7 @@ export default function Profile() {
               ))}
             </div>
           ) : (
-            <FavoritesCarousel albums={favoriteAlbums} />
+            <FavoritesCarousel albums={favoriteAlbums} flippedIds={flippedIds} onFlip={toggleFlip} />
           )}
         </div>
 
