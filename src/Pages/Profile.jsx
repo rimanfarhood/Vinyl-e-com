@@ -4,7 +4,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { FavoritesContext } from "../context/FavoritesContext";
 import FavoritesCarousel from "../components/FavoritesCarousel";
-import AlbumCard from "../components/AlbumCard";
 
 const CARD_MIN_WIDTH = 185;
 const CARD_GAP = 20;
@@ -104,19 +103,13 @@ export default function Profile() {
 
           {favoriteAlbums.length === 0 ? (
             <p className="profile-empty">No favorites added yet.</p>
-          ) : favoriteAlbums.length <= columnsPerRow ? (
-            <div className="profile-favorites-grid">
-              {favoriteAlbums.map((album) => (
-                <AlbumCard
-                  key={album.id}
-                  album={album}
-                  isFlipped={!!flippedIds[album.id]}
-                  onFlip={toggleFlip}
-                />
-              ))}
-            </div>
           ) : (
-            <FavoritesCarousel albums={favoriteAlbums} flippedIds={flippedIds} onFlip={toggleFlip} />
+            <FavoritesCarousel
+              albums={favoriteAlbums}
+              flippedIds={flippedIds}
+              onFlip={toggleFlip}
+              isStatic={favoriteAlbums.length <= columnsPerRow}
+            />
           )}
         </div>
 

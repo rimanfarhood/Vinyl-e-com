@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import AlbumCard from "./AlbumCard";
 
 const SCROLL_SPEED = 50;
 
-export default function FavoritesCarousel({ albums, flippedIds, onFlip }) {
+export default function FavoritesCarousel({ albums, flippedIds, onFlip, isStatic }) {
   const trackRef = useRef(null);
   const rafRef = useRef(null);
   const lastTimeRef = useRef(null);
@@ -11,17 +11,18 @@ export default function FavoritesCarousel({ albums, flippedIds, onFlip }) {
 
   const items = [...albums, ...albums, ...albums];
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (isStatic) return;
     const track = trackRef.current;
-    if (!track) return;
-    setTimeout(() => {
-      track.scrollLeft = track.scrollWidth / 3;
-    }, 50);
-  }, [albums]);
+    if (track) track.scrollLeft = track.scrollWidth / 3;
+  }, [isStatic, albums]);
 
   useEffect(() => {
+    if (isStatic) return;
     const track = trackRef.current;
     if (!track) return;
+
+    lastTimeRef.current = null;
 
     const animate = (time) => {
       if (!pausedRef.current && track) {
@@ -41,7 +42,7 @@ export default function FavoritesCarousel({ albums, flippedIds, onFlip }) {
 
     rafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [albums]);
+  }, [albums, isStatic]);
 
   const scrollLeft = () => {
     const track = trackRef.current;
@@ -61,28 +62,34 @@ export default function FavoritesCarousel({ albums, flippedIds, onFlip }) {
 
   return (
     <div
-      className="fav-carousel"
+      className={`fav-carousel${isStatic ? " fav-carousel--static" : ""}`}
       onMouseEnter={() => { pausedRef.current = true; }}
       onMouseLeave={() => { pausedRef.current = false; }}
       onTouchStart={() => { pausedRef.current = true; }}
       onTouchEnd={() => { pausedRef.current = false; }}
     >
-      <div className="fav-carousel__controls">
-        <button onClick={scrollLeft} aria-label="Scroll left">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-        </button>
-        <button onClick={scrollRight} aria-label="Scroll right">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </button>
-      </div>
+      {!isStatic && (
+        <div className="fav-carousel__controls">
+          <button onClick={scrollLeft} aria-label="Scroll left">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <button onClick={scrollRight} aria-label="Scroll right">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       <div className="fav-carousel__track" ref={trackRef}>
         {items.map((album, index) => (
-          <div key={`${album.id}-${index}`} className="fav-carousel__item">
+          <div
+            key={`${album.id}-${index}`}
+            className="fav-carousel__item"
+            data-copy={Math.floor(index / albums.length)}
+          >
             <AlbumCard
               album={album}
               isFlipped={!!flippedIds[album.id]}

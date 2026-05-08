@@ -1462,6 +1462,17 @@ main section article {
   display: none;
 }
 
+.fav-carousel--static .fav-carousel__track {
+  overflow-x: hidden;
+  justify-content: center;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.fav-carousel--static .fav-carousel__item:not([data-copy="0"]) {
+  display: none;
+}
+
 .profile-favorites-grid .record-expanded.show::-webkit-scrollbar,
 .fav-carousel__item .record-expanded.show::-webkit-scrollbar {
   width: 4px;
