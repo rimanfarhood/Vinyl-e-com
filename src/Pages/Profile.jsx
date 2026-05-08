@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { FavoritesContext } from "../context/FavoritesContext";
@@ -99,6 +99,7 @@ export default function Profile() {
         <div className="profile-card profile-card--full" ref={favCardRef}>
           <div className="profile-card__header">
             <h2>Favorites</h2>
+            <Link to="/favorites" className="profile-view-all">View all</Link>
           </div>
 
           {favoriteAlbums.length === 0 ? (

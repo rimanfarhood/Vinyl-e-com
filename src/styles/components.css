@@ -1175,6 +1175,16 @@ main section article {
 }
 
 .profile-view-all {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.profile-view-all:hover {
+  color: var(--color-accent);
+}
+
+.profile-view-all {
   font-size: 13px;
   color: var(--color-text-muted);
   opacity: 0.6;
@@ -1424,10 +1434,11 @@ main section article {
 
 .fav-carousel:hover .fav-carousel__controls {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .fav-carousel__controls button {
-  pointer-events: all;
+  pointer-events: inherit;
   background: none;
   border: none;
   box-shadow: none;
@@ -1465,8 +1476,6 @@ main section article {
 .fav-carousel--static .fav-carousel__track {
   overflow-x: hidden;
   justify-content: center;
-  -webkit-mask-image: none;
-  mask-image: none;
 }
 
 .fav-carousel--static .fav-carousel__item:not([data-copy="0"]) {
@@ -1581,4 +1590,10 @@ main section article {
 .fav-carousel__item .product-link {
   font-size: 12px;
   margin-top: 6px;
+}
+
+@media (max-width: 700px) {
+  .fav-carousel__controls {
+    display: none;
+  }
 }
